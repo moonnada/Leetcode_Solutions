@@ -28,11 +28,7 @@ var threeSum = function(nums) {
                 j++;
                 k--;
             }
-            else if( sum < target){
-                j++;
-            } else {
-                k--;
-            }
+            else sum > target ? k-- : j++
         }
     }
     return ans;
