@@ -41,23 +41,4 @@ var topKFrequent = function(nums, k) {
     }
     return ans
     
-    
-    
-//    let map = new Map();
-//     let bucket = [];
-//     let ans = [];
-    
-//     for(let num of nums){
-//         map.set(num, (map.get(num) || 0) + 1);
-//     }
-    
-//     for(let [num, freq] of map){
-//         bucket[freq] = (bucket[freq] || new Set()).add(num);
-//     }
-    
-//     for(let i=bucket.length-1; i>=0; i--){
-//         if(bucket[i]) ans.push(...bucket[i])
-//         if(ans.length === k) break
-//     }
-//     return ans
 };
