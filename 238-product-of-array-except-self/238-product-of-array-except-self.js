@@ -4,7 +4,7 @@
  */
 var productExceptSelf = function(nums) {
     /*
-    
+    time : O(n) , space: O(n)
     ex) nums = [1,2,3,4] => [24,12,8,6]
         left = [1,(1)x1 , (1x1)x2 , (1x1x2)x3] = [1,1,2,6]
         right = [ (1x4x3)x2  , (1x4)x3 ,(1)x4,1] = [24, 12, 4, 1]
@@ -17,20 +17,37 @@ var productExceptSelf = function(nums) {
     4. multiply left and right
     */
     
-    let left = [];
-    let right = [];
+//     let left = [];
+//     let right = [];
+//     let leftMulti = 1;
+//     let rightMulti = 1;
+    
+//     for(let i=0; i<nums.length; i++){
+//         left[i] = leftMulti;
+//         leftMulti *= nums[i];
+//     }
+    
+//     for(let i=nums.length-1; i>=0; i--){
+//         right[i] = rightMulti;
+//         rightMulti *= nums[i];
+//         right[i] *= left[i]
+//     }
+//     return right
+    if (nums === null || nums.length <= 1) {
+        return [];
+    }
+    let ans = [];
     let leftMulti = 1;
     let rightMulti = 1;
     
     for(let i=0; i<nums.length; i++){
-        left[i] = leftMulti;
-        leftMulti *= nums[i];
+        ans[i] = leftMulti;
+        leftMulti *= nums[i]
     }
     
     for(let i=nums.length-1; i>=0; i--){
-        right[i] = rightMulti;
+        ans[i] *= rightMulti;
         rightMulti *= nums[i];
-        right[i] *= left[i]
     }
-    return right
+    return ans;
 };
