@@ -33,6 +33,10 @@ var productExceptSelf = function(nums) {
 //         right[i] *= left[i]
 //     }
 //     return right
+    
+    
+    //optimisation
+    //time: o(n), space :o(1)
     if (nums === null || nums.length <= 1) {
         return [];
     }
