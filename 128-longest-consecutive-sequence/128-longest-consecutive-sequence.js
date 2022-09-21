@@ -8,7 +8,8 @@ var longestConsecutive = function(nums) {
     for(let n of set){
         if(!set.has(n-1)){
             let cnt = 0;
-            while(set.has(n++)){
+            while(set.has(n)){
+                n += 1;
                 cnt++;
             }
             max = Math.max(cnt, max)
