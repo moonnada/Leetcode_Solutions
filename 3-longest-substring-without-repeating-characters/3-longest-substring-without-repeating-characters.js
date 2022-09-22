@@ -3,23 +3,26 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-   // keeps track of the most recent index of each letter.
-    const seen = new Map();
-    // keeps track of the starting index of the current substring.
-    let start = 0;
-    // keeps track of the maximum substring length.
+    /*
+    sliding window with map
+    1. init a map (key, val) => (cur element, index)
+    2. init start and max val
+    3. traverse the input string
+    3-1) if map has cur element, that means there are duplicate char already in map, move the start to 1 + the last index of the char. max prevents moving backward. start can only move forward.
+    3-2) put cur element and index into map
+    3-3) get maxLength 
+    */
+    
+    let map = new Map();
     let maxLen = 0;
-    
-    for(let end = 0; end < s.length; end++) {
-        // if the current char was seen, move the start to (1 + the last index of this char)
-        // max prevents moving backward, 'start' can only move forward
-        if(seen.has(s[end])) {
-            start = Math.max(seen.get(s[end]) + 1, start)
+    let start = 0;
+    for(let end =0; end<s.length; end++){
+        if(map.has(s[end])){
+            start = Math.max(map.get(s[end])+1 , start);
         }
-        seen.set(s[end], end);
-        // maximum of the current substring length and maxLen
-        maxLen = Math.max(end - start + 1, maxLen);
-    } 
+        map.set(s[end], end);
+        maxLen = Math.max(end-start+1, maxLen);
+    }
+    return maxLen
     
-    return maxLen;  
 };
