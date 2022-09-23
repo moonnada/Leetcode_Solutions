@@ -5,7 +5,7 @@
  */
 var checkInclusion = function(s1, s2) {
     /*
-    sliding window
+    sliding window. time: o(n), space: o(n)
     1. edge cases
     2. init an object to store the frequency of s1's char
     3. init a left and right pointer, requiredLength
