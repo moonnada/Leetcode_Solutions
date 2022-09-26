@@ -3,18 +3,18 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    let res = [];
-    
-    const dfs = (str, open, close) => {
+    //backtracking and dfs
+    let ans = [];
+    function dfs(str, open, close){
         if(open < close) return;
-        if(open === n && close === n){
-            res.push(str); 
+        
+        if(open === n && close === n) {
+            ans.push(str);
             return;
         }
-        
-        if(open < n) dfs(str + '(', open+1, close);
-        if(close < n) dfs(str + ')', open, close+1);
+        if(open <n) dfs(str+"(", open+1, close);
+        if(close < n) dfs(str+")", open, close+1);
     }
-    dfs('', 0,0);
-    return res;
+    dfs("", 0,0)
+    return ans;
 };
