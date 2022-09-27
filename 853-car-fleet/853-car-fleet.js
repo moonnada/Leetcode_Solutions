@@ -5,6 +5,7 @@
  * @return {number}
  */
 var carFleet = function(target, position, speed) {
+    //time : o(nlgn) space: o(n)
     let cars = [];
     for(let i=0; i<position.length; i++){
         cars.push({
