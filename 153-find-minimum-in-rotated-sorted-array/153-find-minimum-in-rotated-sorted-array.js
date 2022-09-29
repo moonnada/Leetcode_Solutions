@@ -6,7 +6,7 @@ var findMin = function(nums) {
     /*
     binary
     1. init start and end val
-    2. while start <= end
+    2. while start < end
     2-1) init a mid val
     2-2) if arr[mid] > arr[mid-1], end = mid-1
     2-3) else start = mid+1
