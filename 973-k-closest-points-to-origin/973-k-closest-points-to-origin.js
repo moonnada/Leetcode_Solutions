@@ -4,6 +4,10 @@
  * @return {number[][]}
  */
 var kClosest = function(points, k) {
+    /*
+    MaxHeap. delete from the end.
+    time: o(nlgn), space: o(n)
+    */
     const heap = new MaxPriorityQueue({
         compare: (p1, p2) => p1.distance < p2.distance
     })
