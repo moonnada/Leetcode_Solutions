@@ -10,7 +10,7 @@ var combinationSum = function(candidates, target) {
     return ans;
     
     function backtracking(startIndex, target){
-        if(target === 0) return ans.push(buffer.slice());
+        if(target === 0) return ans.push([...buffer]);
         if(target < 0) return;
         if(startIndex === candidates.length) return;
         buffer.push(candidates[startIndex]);
