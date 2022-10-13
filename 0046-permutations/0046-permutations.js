@@ -4,6 +4,9 @@
  */
 var permute = function(nums) {
     let ans = [];
+    backtracking([], nums);
+    return ans
+    
     function backtracking(cur, rem){
         if(rem.length === 0) ans.push([...cur]);
         for(let i=0; i<rem.length; i++){
@@ -14,6 +17,5 @@ var permute = function(nums) {
             backtracking(newCur, newRem)
         }
     }
-    backtracking([], nums);
-    return ans
+   
 };
