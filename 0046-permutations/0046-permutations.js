@@ -3,23 +3,18 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-   let temp = []
-    let result = []
-
-    function backtracking(temp, nums) {
-      if(nums.length == 0) {
-          result.push([...temp])
-          return
-       }
-    
-      for(let i=0; i<nums.length; i++) {
-          temp.push(nums[i])
-          nums.splice(i, 1)
-          backtracking(temp, nums)
-          nums.splice(i, 0, temp.pop())
-       }
+   let ans = [];
+    backtracking([], nums);
+    return ans;
+    function backtracking(cur, rem){
+        if(!rem.length) ans.push([...cur]);
+        for(let i=0; i<rem.length; i++){
+            let newCur = rem[i];
+            cur.push(newCur);
+            let newRem = rem.filter((num , idx) => idx !== i);
+            backtracking(cur, newRem);
+            cur.pop();
+        }
     }
-    backtracking(temp, nums)
-    return result
    
 };
