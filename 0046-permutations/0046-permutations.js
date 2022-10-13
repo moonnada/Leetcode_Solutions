@@ -6,12 +6,12 @@ var permute = function(nums) {
     let ans = [];
     function backtracking(cur, rem){
         if(rem.length <= 0) ans.push([...cur]);
-        else {
-            for(let i=0; i<rem.length; i++){
-                cur.push(rem[i]);
-                backtracking([...cur], rem.slice(0,i).concat(rem.slice(i+1)));
-                cur.pop();
-            }
+        for(let i=0; i<rem.length; i++){
+            let newCur = [...cur];
+            let newRem = [...rem];
+            newCur.push(newRem[i]);
+            newRem.splice(i,1);
+            backtracking(newCur, newRem)
         }
     }
     backtracking([], nums);
