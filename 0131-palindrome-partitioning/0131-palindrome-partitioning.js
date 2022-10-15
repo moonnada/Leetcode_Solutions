@@ -6,7 +6,11 @@ var partition = function(s) {
     const output = [];
     const partitions = [];
     const isPalindrome = str => str === str.split('').reverse().join('');
-    const findPalindrome = (str, start, parts, result) => {
+    // function isPalindrome(str){
+    //     str === str.split('').reverse().join('');
+    // }
+    
+    function findPalindrome(str, start, parts, result) {
         if (start === str.length) {
             result.push([...parts])
             return;
