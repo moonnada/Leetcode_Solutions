@@ -4,29 +4,42 @@
  * @return {boolean}
  */
 var exist = function(board, word) {
-    let x = board.length;
-    let y = board[0].length;
-    let wordLen = word.length;
+    /*
+    DFS. backtracking
+    1. init row and col and visited
+    2. traverse 2d arr and if we find the first letter and visit by using a helper func. return true
+    3. in a helper func (i,j,idx, word, board)
+    3.1) if idx = word.length, return true // reaching the final word
+    3.2) check edge cases
+    3.3) mark current place as visited
+    3.4) visit recursively horizontal and vertical ways
+    */
     
-    for(let i=0; i<x; i++){
-        for(let j=0; j<y; j++){
-            if(dfs(i,j,0)) return true; //word found
+    let row = board.length;
+    let col = board[0].length;
+    
+    for(let i=0; i<row; i++){
+        for(let j=0; j<col; j++){
+            if(board[i][j] === word.charAt(0) && dfs(i,j, 0, word, board)) return true;
         }
     }
+    return false;
     
-    function dfs(i,j,k){
-        if(i>=0 && i < x && j>=0 && j < y && k < wordLen && board[i][j] == word[k]){
-            if(k == word.length -1) return true;
-            k = k+1; //next word
-            
-            let temp = board[i][j]; //for backtracking
-            board[i][j] = "";
-            
-            let found = dfs(i+1,j,k) || dfs(i,j+1,k) || dfs(i-1,j,k) || dfs(i,j-1,k);
-            board[i][j] = temp;
-            return found;
-        }
-        return false;
+    function dfs(i,j, idx, word, board){
+        if(idx === word.length) return true;
+        if(i < 0 || i >= board.length || j <0 || j>= board[i].length || word.charAt(idx) !== board[i][j] ) return false;
+        
+        let tmp = board[i][j];
+        board[i][j] = "*";
+        
+        if( dfs(i+1,j,idx+1,word,board) ||
+            dfs(i,j+1, idx+1, word, board) ||
+            dfs(i-1, j, idx+1, word, board) ||
+            dfs(i, j-1, idx+1, word, board)
+          ) return true;
+        
+        board[i][j] = tmp;
+        
+        return false
     }
-    return false
 };
