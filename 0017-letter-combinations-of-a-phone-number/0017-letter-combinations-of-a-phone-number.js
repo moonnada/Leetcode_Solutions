@@ -8,7 +8,8 @@ var letterCombinations = function(digits) {
     DFS approach as we will check each permutation of characters and store them in ans array.
     1. check edge cases(null, 0 length)
     2. store characters into nums
-    3. in a dfs func, whenever 
+    3. in a dfs func, first of all, if curIndex is same as digits.length, then put curArray into ansArr. 
+        After that, travese cur letters to find valid postion and idx 
     */
     if(digits == null || digits.length === 0 ) return [];
     const map = {
@@ -23,20 +24,17 @@ var letterCombinations = function(digits) {
     }
     
     let ans = [];
-    function dfs(idx, cur){
-        if(idx === digits.length){
-            return ans.push(cur)
-        }
+    dfs([], 0);
+    return ans;
+    
+    function dfs(cur, idx){
+        if(idx === digits.length) return ans.push(cur);
         
         let letters = map[digits[idx]];
-        for(let char of letters){
-            console.log(cur);
-            dfs(idx+1, cur+char)
-        } 
         
-       
+        for(let char of letters){
+            dfs( cur+char, idx+1);
+        }
     }
     
-    dfs(0,[]);
-    return ans;
 };
