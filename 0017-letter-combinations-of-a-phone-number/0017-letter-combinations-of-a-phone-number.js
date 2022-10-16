@@ -21,7 +21,9 @@ var letterCombinations = function(digits) {
             return ans.push(cur)
         }
         
-        for(let char of map[digits[idx]]){
+        let letters = map[digits[idx]]
+        for(let char of letters){
+            console.log(cur);
             dfs(idx+1, cur+char)
         }
     }
