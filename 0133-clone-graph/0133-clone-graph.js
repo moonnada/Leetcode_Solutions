@@ -15,7 +15,7 @@ var cloneGraph = function(node) {
     1. check edge cases(empty, one node)
     */
     let start = node;
-    if(start === null) return null;
+    if(start === null || start.length === 1) return null;
     let map = new Map();
     
     let queue = [start];
