@@ -7,7 +7,7 @@ var numIslands = function(grid) {
     backtracking dfs
     1. check edge case(empty..)
     2. traverse 2d grid and if find a land, then cnt++ and by using a helper func, deep dive inside.
-    3. in a helper func(supposed to current position is a land), change the cur position to 0 to avoid counting 
+    3. in a helper func, check out of range first. and then if cur postion is land, change the cur position to 0 to avoid recounting 
     4. visit 4 different ways by using recursion
     */
     
