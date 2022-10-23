@@ -16,16 +16,6 @@ var maxAreaOfIsland = function(grid) {
     let row = grid.length;
     let col = grid[0].length;
     
-    
-    
-    
-    const trav = (i,j,grid) => {
-        if(i < 0 || i>= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) return 0;
-        
-       grid[i][j] = 0;
-        return (1+ trav(i-1,j,grid) + trav(i+1,j,grid) + trav(i,j-1,grid) + trav(i,j+1,grid) )
-    }
-    
     for(let i=0; i<row; i++){
         for(let j=0; j<col; j++){
            if(grid[i][j]){
@@ -34,5 +24,15 @@ var maxAreaOfIsland = function(grid) {
         }
     }
     return maxLand;
+    
+    
+   function trav(i,j,grid) {
+        if(i < 0 || i>= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) return 0;
+        
+       grid[i][j] = 0;
+        return (1+ trav(i-1,j,grid) + trav(i+1,j,grid) + trav(i,j-1,grid) + trav(i,j+1,grid) )
+    }
+    
+    
 
 };
