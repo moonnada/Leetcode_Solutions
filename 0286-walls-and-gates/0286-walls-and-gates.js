@@ -3,7 +3,8 @@
  * @return {void} Do not return anything, modify rooms in-place instead.
  */
 var wallsAndGates = function(rooms) {
-    //BFS
+    ////////////////BFS ////////////////
+    
 //     if(!rooms.length) return;
     
 //     const EMPTY = 2147483647,
@@ -40,6 +41,8 @@ var wallsAndGates = function(rooms) {
 //             queue.push([r,c])
 //         }
 //     }
+    
+    ///////////////////////DFS/////////////////////
     
     const n = rooms.length;
     const m = rooms[0].length;
