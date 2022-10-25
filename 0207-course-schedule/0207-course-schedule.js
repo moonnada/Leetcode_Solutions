@@ -4,49 +4,56 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    let preMap = {};
-    let visited = {};
+    /*
+    DFS
+   
+    */
     
-    
-    for(let i=0; i<prerequisites.length; i++){
-        if(preMap[prerequisites[i][0]] === undefined){
-            preMap[prerequisites[i][0]] = [prerequisites[i][1]];
-        } else {
-            preMap[prerequisites[i][0]].push(prerequisites[i][1]);
+    function getPreReqsPerCourse(numCourses, prerequisites){
+        const prereqsPerCourse = [];
+        for(let course=0; course<numCourses; course++){
+            prereqsPerCourse[course] = [];
         }
-    }
-    
-    function dfs(node){
-        //if already visit the cur node, return false
-        if(visited[node]) return false;
         
-        //if cur node has not visited yet
-        if(preMap[node] !== undefined){
-            
-            //if curNode of map is empty (means reaching the end of node), return true
-            if(preMap[node].length === 0) return true;
-            
-            //mark cur node as visited
-            visited[node] = true;
-            
-            //traverse curNode of map to see there is no re-occurance of the curNode.
-            //if dfs func returns false, then return false
-            for(let val of preMap[node]){
-                if(!dfs(val)) return false;
-            }
-            
-            //mark cur Node as unvisited
-            visited[node] = false;
-            
-            //delete cur Node from map
-            preMap[node] = [];
+        for(let i=0; i<prerequisites.length; i++){
+            const [course, preReq] = prerequisites[i];
+            prereqsPerCourse[course].push(preReq);
         }
-        return true;
+        return prereqsPerCourse;
     }
     
-    for(let key in preMap){
-        //if dfs func returns false, then return false
-        if(!dfs(key)) return false;
+    const prereqsPerCourse = getPreReqsPerCourse(numCourses, prerequisites);
+    const visitedState = {
+        unknown: 0,
+        checkingPreReqs: 1,
+        preReqMet: 2,
     }
-    return true;
+    const visited = [];
+    for(let course=0; course<numCourses; course++){
+        visited[course] = visitedState.unknown;
+    }
+    
+    function isPreReqHierarchyValid(course){
+        const state = visited[course];
+        if(state === visitedState.checkingPreReqs) return false;
+        else if( state === visitedState.preReqMet) return true;
+        else if(state === visitedState.unknown){
+            visited[course] = visitedState.checkingPreReqs;
+            const preReqs = prereqsPerCourse[course];
+            
+            for(let i=0; i<preReqs.length; i++){
+                const preReq = preReqs[i];
+                const isPreReqValid = isPreReqHierarchyValid(preReq);
+                if(!isPreReqValid) return false;
+            }
+            visited[course] = visitedState.preReqMet;
+            return true
+        }
+    }
+    
+    for(let course=0; course<numCourses; course++){
+        const isValid = isPreReqHierarchyValid(course);
+        if(!isValid) return false;
+    } return true
+    
 };
