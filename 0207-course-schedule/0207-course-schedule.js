@@ -35,7 +35,10 @@ var canFinish = function(numCourses, prerequisites) {
                 if(!dfs(val)) return false;
             }
             
+            //mark cur Node as unvisited
             visited[node] = false;
+            
+            //delete cur Node from map
             preMap[node] = [];
         }
         return true;
