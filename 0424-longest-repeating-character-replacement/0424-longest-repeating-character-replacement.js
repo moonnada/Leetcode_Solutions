@@ -4,24 +4,18 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    /*
-    using slide window. left and right
-    */
-   
-    let left=0, right=0, maxCharCnt = 0;
-    const visited = {};
-    
+   let left = 0 , right = 0, max = 0;
+    const map = new Map();
     while(right < s.length){
-        const char = s[right];
-        visited[char] = visited[char] ? visited[char]+1 : 1;
+        let char = s[right];
+        map[char] = map[char] ? map[char]+1 : 1;
         
-        maxCharCnt = Math.max(maxCharCnt, visited[char]);
+        max = Math.max(max, map[char]);
         
-        if(right-left+1 - maxCharCnt > k){
-            visited[s[left]]--;
+        if(right-left+1 - max > k){
+            map[[s[left]]]--;
             left++;
-        }
-        right++;
+        } right++;
     }
     return right-left
 };
