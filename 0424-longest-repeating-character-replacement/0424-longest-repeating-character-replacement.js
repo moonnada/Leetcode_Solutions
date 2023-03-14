@@ -8,7 +8,7 @@ var characterReplacement = function(s, k) {
     const map = new Map();
     while(right < s.length){
         let char = s[right];
-        map[char] = map[char] ? map[char]+1 : 1;
+        map[char] =  map[char]+1 || 1;
         
         max = Math.max(max, map[char]);
         
