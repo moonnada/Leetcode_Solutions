@@ -3,23 +3,25 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    //HashMap (key: word, val: list of the same anagram)
     /*
-    1. init a map
-    2. traverse the input arr
-    3. sorted the cur word
-    4. if map has the sorted word, the add to the list
-    5. else put the cur word into the map
-    6. return map.val
+    U: 
+        q) any letters can be in input strs?
+    M: map (key: str, val: arr of str)
+    P: 
+     1. init a map 
+     2. traverse the input strs of each char into map
+        2.1) sort a current str
+        2.2) if a str is already in a map, put into map
+        2.3) else put the cur str into map
     */
     
     let map = new Map();
     for(let str of strs){
-        let sorted = str.split("").sort().join("");
-        if(map.has(sorted)) {
-            map.set( sorted, [...map.get(sorted), str] )
+        let sortedStr = str.split("").sort().join("");
+        if(map.has(sortedStr)){
+            map.set(sortedStr, [...map.get(sortedStr), str] )
         } else {
-            map.set(sorted, [str])
+            map.set(sortedStr, [str])
         }
     }
     return Array.from(map.values())
