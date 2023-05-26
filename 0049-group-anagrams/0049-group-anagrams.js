@@ -15,13 +15,13 @@ var groupAnagrams = function(strs) {
         2.3) else put the cur str into map
     */
     
-    let map = new Map();
+  let map = new Map();
     for(let str of strs){
-        let sortedStr = str.split("").sort().join("");
-        if(map.has(sortedStr)){
-            map.set(sortedStr, [...map.get(sortedStr), str] )
+        const sorted = str.split("").sort().join("");
+        if(map.has(sorted)){
+            map.set(sorted, [...map.get(sorted), str])
         } else {
-            map.set(sortedStr, [str])
+            map.set(sorted, [str])
         }
     }
     return Array.from(map.values())
