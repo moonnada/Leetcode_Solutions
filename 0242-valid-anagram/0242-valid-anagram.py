@@ -15,6 +15,10 @@ class Solution:
         3. traverse the first input str to put key and value inside a map. put input s, t both
         4. traverse the input s'map to compare t's map count
         
+        I: 
+        
+        R: 
+            time: o(n), space: o(n)
         '''
         
         if len(s) != len(t): return False
