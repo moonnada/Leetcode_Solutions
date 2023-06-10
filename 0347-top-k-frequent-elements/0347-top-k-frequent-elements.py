@@ -11,7 +11,7 @@ class Solution:
             hashmap (key: count, val: number), bucketsort
             
         P :
-            1. init a map
+            1. init a map and a bucket
             2. iterate a loop to put key and val inside the map
             3. iterate a loop to put number and its count from map to bucket
             4. init a result arr
@@ -24,20 +24,19 @@ class Solution:
         freq = [[] for i in range(len(nums) + 1)]
         
         for i in nums:
-            count[i] = count.get(i, 0) + 1
+            count[i] = count.get(i , 0) + 1
             
         for num, cnt in count.items():
             freq[cnt].append(num)
             
-        result = []
+        res = []
         
         for i in range(len(freq)-1, 0 ,-1):
             for num in freq[i]:
-                result.append(num)
-                if len(result) == k:
-                    return result
-        
-        
+                res.append(num)
+                
+                if len(res) == k:
+                    return res
         
         
         
