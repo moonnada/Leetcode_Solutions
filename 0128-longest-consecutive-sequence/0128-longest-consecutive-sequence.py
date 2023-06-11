@@ -20,17 +20,15 @@ class Solution:
         hashset = set(nums)
         longest = 0
         
-        for i in hashset:
-            if i -1 not in hashset:
-                currentNum = i
-                curCount = 1
+        for num in hashset:
+            if num - 1 not in hashset:
+                curVal = num
+                curCnt = 1
                 
-                while currentNum + 1 in hashset:
-                    currentNum +=1
-                    curCount +=1
+                while curVal + 1 in hashset:
+                    curVal +=1
+                    curCnt +=1
                     
-                longest = max(longest, curCount)
+                longest = max(longest, curCnt)
                 
         return longest
-        
-        
