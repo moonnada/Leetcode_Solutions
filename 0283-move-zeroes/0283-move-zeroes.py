@@ -10,17 +10,26 @@ class Solution:
         q) what if the input arr doesnt have a 0 
         q) is the input arr sorted? and output would be sorted?
         
+        [0,1,0,3,12]
+         L
+           R
+        [1,0,0,3,12]
+           L
+               R
+        [1,3,0,0,12]
+           L
+               R
         M:
-        arr
+        two ptrs
         
         P:
-        1. traverse the input arr to count and find 0
-            2. if 0 is found, then delete it and count is incremented
-        3. while cnt <= 0, add 0 into the arr
+        1. init a first ptr as 0 
+        2. traverse the input arr to swap if cur val is not 0. and the first val is incremented
         '''
         left = 0
         for right in range(len(nums)):
             if nums[right] != 0:
                 nums[left], nums[right] = nums[right], nums[left]
-                left+= 1
+                left+=1
+        
         return nums
