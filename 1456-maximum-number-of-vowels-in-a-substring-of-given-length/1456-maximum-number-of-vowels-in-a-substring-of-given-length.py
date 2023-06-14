@@ -25,17 +25,17 @@ class Solution:
       
         VOWELS = 'aeiou'
         
-        maxVowels = cur = left = 0
+        maxCnt = cur = left = 0
         
         for right in range(len(s)):
             if s[right] in VOWELS:
-                cur+= 1
+                cur+=1
                 
             if right - left + 1 > k:
                 if s[left] in VOWELS:
-                    cur-=1
-                left +=1
+                    cur -= 1
+                left += 1
             
-            maxVowels = max(cur , maxVowels)
+            maxCnt = max(cur, maxCnt)
             
-        return maxVowels
+        return maxCnt
