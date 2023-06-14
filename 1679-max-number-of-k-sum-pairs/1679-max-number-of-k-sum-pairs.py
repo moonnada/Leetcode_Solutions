@@ -23,6 +23,18 @@ class Solution:
          
          time: o(nlgn), space: o(1)
         '''
+        counter = defaultdict(int)
+        cnt = 0
+        
+        for x in nums:
+            comp = k - x
+            if counter[comp] > 0:
+                counter[comp]-=1
+                cnt+=1
+            else:
+                counter[x]+=1
+                
+        return cnt
         
 #         left, right = 0, len(nums)-1
 #         cnt = 0
@@ -41,16 +53,6 @@ class Solution:
                 
 #         return cnt
 
-        counter = defaultdict(int)
-        
-        count = 0
-        for x in nums:
-            comp = k - x
-            if counter[comp]>0:
-                counter[comp]-=1
-                count+=1
-            else:
-                counter[x] +=1
-        
-        return count
+
+
         
