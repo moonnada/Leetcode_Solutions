@@ -20,23 +20,37 @@ class Solution:
          2.1) if combine of elements of left and right are equal to k, then left++, right--, and cnt++
          2.2) else if arr[left] + arr[left] < k, left++
          2.3) else right--
+         
+         time: o(nlgn), space: o(1)
         '''
         
-        left, right = 0, len(nums)-1
-        cnt = 0
-        nums.sort()
+#         left, right = 0, len(nums)-1
+#         cnt = 0
+#         nums.sort()
         
-        while left < right:
-            val = nums[left] + nums[right]
-            if val < k:
-                left+=1
-            elif val > k:
-                right-=1
-            else:
-                right-=1
-                left+=1
-                cnt+=1
+#         while left < right:
+#             val = nums[left] + nums[right]
+#             if val < k:
+#                 left+=1
+#             elif val > k:
+#                 right-=1
+#             else:
+#                 right-=1
+#                 left+=1
+#                 cnt+=1
                 
-        return cnt
+#         return cnt
+
+        counter = defaultdict(int)
         
+        count = 0
+        for x in nums:
+            comp = k - x
+            if counter[comp]>0:
+                counter[comp]-=1
+                count+=1
+            else:
+                counter[x] +=1
+        
+        return count
         
