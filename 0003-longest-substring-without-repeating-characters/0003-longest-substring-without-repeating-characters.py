@@ -27,16 +27,16 @@ class Solution:
         
         if len(s) == 0 or len(s)==1: return len(s)
         
-        left = maxCnt = 0
         charSet = set()
+        
+        left = maxCnt = 0
+        
         for right in range(len(s)):
             while s[right] in charSet:
                 charSet.remove(s[left])
                 left += 1
                 
             charSet.add(s[right])
-            maxCnt = max(maxCnt, right-left+1)
+            maxCnt = max(maxCnt, right - left + 1)
         
         return maxCnt
-        
-        
