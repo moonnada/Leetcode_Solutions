@@ -23,7 +23,7 @@ class Solution:
         c1 = Counter(word1)
         c2 = Counter(word2)
         
-        if set(word1) == set(word2) and sorted(list(c1.values())) == sorted(list(c2.values())):
-            return True
-        else: return False
+        n1 = Counter([v for v in c1.values()])
+        n2 = Counter([v for v in c2.values()])
         
+        return c1 == c2 or ( n1 == n2 and set(word1) == set(word2))
