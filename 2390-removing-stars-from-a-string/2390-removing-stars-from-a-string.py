@@ -19,7 +19,7 @@ class Solution:
         ans=[]
         
         for i in s:
-            if i!='*':
+            if i != '*':
                 ans+=[i]
             else:
                 ans.pop()
