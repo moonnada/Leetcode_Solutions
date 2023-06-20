@@ -19,10 +19,9 @@ class Solution:
         ans=[]
         
         for i in s:
-            if i =='*':
-                ans.pop()
-            else:
+            if i!='*':
                 ans+=[i]
-
+            else:
+                ans.pop()
                 
         return "".join(ans)
