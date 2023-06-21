@@ -17,11 +17,12 @@ class Solution:
                 
                 if leftSum == rightSum
         '''
-        S = sum(nums)
-        leftsum = 0
-        for i, x in enumerate(nums):
-            if leftsum == (S - leftsum - x):
-                return i
-            leftsum += x
+        totalSum = sum(nums)
+        leftSum = 0
+        
+        for i in range(len(nums)):
+            rightSum = totalSum - nums[i] - leftSum
+            if leftSum == rightSum: return i
+            else: leftSum += nums[i]
         return -1
         
