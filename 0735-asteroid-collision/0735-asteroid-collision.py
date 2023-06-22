@@ -5,8 +5,6 @@ class Solution:
             q) always positive nums are on the left side and negative nums are on the right side? 
                 ex) [7,-13,19,3,-1,3] => is it a valid example?
                 
-                
-     
         M: stack
         
         P: 
@@ -18,7 +16,7 @@ class Solution:
                         2.4) break
                 2.5) add the curVal into the stack
                   
-        
+        time: o(n), space: o(n)
         '''
         stack = []
         
