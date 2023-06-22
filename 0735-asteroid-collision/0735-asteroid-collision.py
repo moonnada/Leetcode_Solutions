@@ -21,45 +21,22 @@ class Solution:
         
         '''
         stack = []
-
-        # Iterate over asteroids
-        for asteroid in asteroids:
+        
+        for num in asteroids:
             
-            # if stack top is positive and asteroid is negative
-            while stack and stack[-1] > 0 and asteroid < 0:
-
-                # if asteroid is greater then remove the current stack top element
-                if abs(stack[-1]) < abs(asteroid):
+            while stack and stack[-1] > 0 and num < 0:
+                
+                if abs(stack[-1]) < abs(num):
                     stack.pop()
                     continue
-                
-                # If equal remove top and dont add current asteroid
-                elif abs(stack[-1]) == abs(asteroid):
+                    
+                elif abs(stack[-1]) == abs(num):
                     stack.pop()
                 break
-
+                
             else:
-                stack.append(asteroid)
-
-        # return Stack
+                stack.append(num)
+        
         return stack
-#         stack = []
-        
-#         for num in asteroids:
-            
-#             while stack and stack[-1] > 0 and num < 0:
-                
-#                 if abs(stack[-1]) < abs(num):
-#                     stack.pop()
-#                     continue
-                    
-#                 elif abs(stack[-1]) == abs(num):
-#                     stack.pop
-#                 break
-                
-#             else:
-#                 stack.append(num)
-        
-#         return stack
 
           
