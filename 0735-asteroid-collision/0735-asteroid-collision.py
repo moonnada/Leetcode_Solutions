@@ -2,20 +2,21 @@ class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         '''
         U:
-            q) always positive nums are on the left side and negative num are on the right side? 
-                ex) [7,-3,9,3,-1,3] => this wouldnt be considered?
+            q) always positive nums are on the left side and negative nums are on the right side? 
+                ex) [7,-13,19,3,-1,3] => is it a valid example?
                 
                 
-            ex) [5,10,2,-5,-3,-9]
-                         p
-                 
-            set: 5,10,-5
+     
+        M: stack
         
-        M: set, sliding window
-        
-        P: - traverse the input list 
-                - if curElement > 0, put the set
-                  else compare the absValues of culElement and the last val of set. put the bigger one into the set. while set has a negative num, keep comparing
+        P: 
+            1) init a stack
+            2) iterate over the input list
+                2.1) while stack top is positive and new number is negative
+                        2.2) if stack top < new number, stack.pop and continue
+                        2.3) elif stack top == new number, stack pop
+                        2.4) break
+                2.5) add the curVal into the stack
                   
         
         '''
@@ -42,3 +43,23 @@ class Solution:
 
         # return Stack
         return stack
+#         stack = []
+        
+#         for num in asteroids:
+            
+#             while stack and stack[-1] > 0 and num < 0:
+                
+#                 if abs(stack[-1]) < abs(num):
+#                     stack.pop()
+#                     continue
+                    
+#                 elif abs(stack[-1]) == abs(num):
+#                     stack.pop
+#                 break
+                
+#             else:
+#                 stack.append(num)
+        
+#         return stack
+
+          
