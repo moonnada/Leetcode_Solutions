@@ -29,10 +29,9 @@ class Solution:
         
         for i in range(len(s1)):
             freqS1[ord(s1[i]) - 97] += 1
-            freqS2[ord(s2[i])- 97] += 1
+            freqS2[ord(s2[i]) - 97] += 1
             
-        if freqS1 == freqS2:
-            return True
+        if freqS1 == freqS2: return True
         
         for i in range(len(s1), len(s2)):
             freqS2[ord(s2[i]) - 97] += 1
