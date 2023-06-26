@@ -13,9 +13,9 @@ class Solution:
         ex) 1 -> 2 -> 3 -> 4 -> 5
         
          p  1  2   
-            h
+            
             c
-         
+               n
          M: linked list
          
          P: 
@@ -25,15 +25,10 @@ class Solution:
             4. c = head
             5. head = c.next
             
-            prev, curr = None, head
-        while curr:
-            curr.next, 
-            prev, 
-            curr = prev, curr, curr.next
-        return prev
+          
          
         '''
-        
+        if not head or not head.next : return head
         prev = None
         nxt = None
         curr = head
