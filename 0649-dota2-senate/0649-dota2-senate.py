@@ -18,7 +18,7 @@ class Solution:
             2. traverse the input str to put a char's index into each queue
             3. while both queues exist
                 3.1) pop both queues' left and init as a val
-                3.2) if 
+                3.2) compare cur positions and 
         '''
         
         senate = list(senate)
