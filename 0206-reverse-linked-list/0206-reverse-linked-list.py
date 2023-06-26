@@ -24,10 +24,24 @@ class Solution:
             3. c = head.next
             4. c = head
             5. head = c.next
+            
+            prev, curr = None, head
+        while curr:
+            curr.next, 
+            prev, 
+            curr = prev, curr, curr.next
+        return prev
          
         '''
         
-        prev, curr = None, head
+        prev = None
+        nxt = None
+        curr = head
+        
         while curr:
-            curr.next, prev, curr = prev, curr, curr.next
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+        
         return prev
