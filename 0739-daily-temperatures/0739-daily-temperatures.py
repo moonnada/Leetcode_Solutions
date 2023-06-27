@@ -9,26 +9,28 @@ class Solution:
               
         M: stack
         
-        curVal = 71
-        stack = [75,71]
-        ans = [1,1, ]
+        P: 
+            1. init a res list. put 0 as much as len of input list
+            2. init a stack
+            3. traverse the input list to put index and value of list
+                3.1) while stack and curVal > stack's top
+                    3.2) pop temp and index from stack
+                    3.3) put curIndex - stackIndex into ans list. 
+                4) put cur temp and index into stack
+            5. return list
+            
         
-        if stack[-1] < curVal:
-            ans.add( curVal - stack[-1])
-            stack.pop()
-            stack.append(curVal)
-        else
-            stack.append(curVal)
+        t: o(n), s: o(n)
         '''
         
         res = [0] * len(temperatures)
-        stack = [] #pair: [temp, index]
+        stack = [] 
         
-        for i, t in enumerate(temperatures):
+        for i,t in enumerate(temperatures):
             while stack and t > stack[-1][0]:
-                stackT, stackIndex = stack.pop()
-                res[stackIndex] = (i - stackIndex)
-                
-            stack.append([t,i])
-        
+                stackT, stackInd = stack.pop()
+                res[stackInd] = i - stackInd
+            
+            stack.append([t, i])
+            
         return res
