@@ -23,6 +23,8 @@ class Solution:
             2. find middle
             3. reverse the second half
             4. merge two halfs
+            
+        time: o(n), space: o(1)
         '''
         
         if not head or not head.next: return head
@@ -52,5 +54,7 @@ class Solution:
             tmp2 = second.next
             first.next = second
             second.next = tmp1
+            
             first = tmp1
             second = tmp2
+        
