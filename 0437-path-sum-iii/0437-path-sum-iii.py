@@ -11,21 +11,17 @@ class Solution:
             
         M: dfs
         '''
-        self.cnt = 0
-        self.lookup = defaultdict(int)
-        self.lookup[targetSum] = 1
+        def path(root, targetSum):
+            if root == None: return 0
+            res = 0
+            
+            if root.val == targetSum: res += 1
+            
+            res += path(root.left, targetSum - root.val)
+            res += path(root.right, targetSum - root.val)
+            
+            return res
         
-        def dfs(node, rootSum):
-            if not node: return
-            
-            rootSum += node.val
-            self.cnt += self.lookup[rootSum]
-            self.lookup[rootSum + targetSum] += 1
-            dfs(node.left, rootSum)
-            dfs(node.right, rootSum)
-            
-            self.lookup[rootSum + targetSum] -= 1
-            
-        dfs(root, 0)
+        if root == None: return 0
         
-        return self.cnt
+        return self.pathSum(root.left, targetSum) + path(root, targetSum) + self.pathSum(root.right, targetSum)
