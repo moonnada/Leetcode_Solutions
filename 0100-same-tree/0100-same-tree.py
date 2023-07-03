@@ -36,9 +36,9 @@ class Solution:
             4. true
         '''
         
-        # if p and q: return True
-        # if not p or not q: return False
-        # if p.val != q.val: return False
+        if not p and not q: return True
+        if not p or not q: return False
+        if p.val != q.val: return False
     
         que = deque([(p,q)])
         while que:
