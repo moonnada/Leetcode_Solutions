@@ -12,11 +12,13 @@ class Solution:
         1. need to remember what the recent direction was
         P:
             1. check edge cases( null , one node)
-            2. init a func to visit recursively
-                2.1) check there is a left on the left or right side. if not, return 0
+            2. make a helper func to visit recursively
+                2.1) check there is a left on the left or right side. if not, return cur depth
                 2.2) 
     
         '''
+        if not root: return 0
+        if not root.left and not root.right: return 0
         
         return max(self.dfs(root.left, True, 0), self.dfs(root.right, False, 0))
     
