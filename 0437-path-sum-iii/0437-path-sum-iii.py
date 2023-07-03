@@ -12,7 +12,7 @@ class Solution:
         M: dfs
         '''
         def path(root, targetSum):
-            if root == None: return 0
+            if not root: return 0
             res = 0
             
             if root.val == targetSum: res += 1
@@ -22,6 +22,6 @@ class Solution:
             
             return res
         
-        if root == None: return 0
+        if not root: return 0
         
         return self.pathSum(root.left, targetSum) + path(root, targetSum) + self.pathSum(root.right, targetSum)
