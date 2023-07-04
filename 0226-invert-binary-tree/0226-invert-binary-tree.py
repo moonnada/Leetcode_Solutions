@@ -20,13 +20,29 @@ class Solution:
             4. return root
         '''
         
+#         if not root: return None
+        
+#         left = self.invertTree(root.left)
+#         right = self.invertTree(root.right)
+        
+#         root.left = right
+#         root.right = left
+        
+#         return root
+
         if not root: return None
-        
-        left = self.invertTree(root.left)
-        right = self.invertTree(root.right)
-        
-        root.left = right
-        root.right = left
-        
+    
+        que = deque([root])
+    
+        while que:
+            curr = que.popleft()
+            curr.left, curr.right = curr.right, curr.left
+            
+            if curr.left:
+                que.append(curr.left)
+                
+            if curr.right:
+                que.append(curr.right)
+                
         return root
         
