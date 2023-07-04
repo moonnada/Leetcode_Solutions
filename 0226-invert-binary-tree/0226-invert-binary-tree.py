@@ -22,11 +22,11 @@ class Solution:
         
         if not root: return None
         
-        l = self.invertTree(root.right)
-        r = self.invertTree(root.left)
-        root.left = l
-        root.right = r
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
         
+        root.left = right
+        root.right = left
         
         return root
         
