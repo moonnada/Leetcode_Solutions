@@ -54,8 +54,9 @@ class Solution:
                 
 #         return res
 
+       
         if not root: return []
-    
+        
         ans = []
         
         def helper(node, level):
@@ -66,6 +67,7 @@ class Solution:
                 if child:
                     helper(child, level+1)
                     
+        
         helper(root, 0)
         
         return ans
