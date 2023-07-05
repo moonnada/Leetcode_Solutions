@@ -18,23 +18,16 @@ class Solution:
         '''
         #time: o(n), space: o(1) if not countring recursive, otherwise o(n)
         
-#         if not root or root == p or root == q: return root
-        
-#         leftVal = self.lowestCommonAncestor(root.left, p,q)
-#         rightVal = self.lowestCommonAncestor(root.right, p,q)
-        
-#         if leftVal and rightVal:
-#             return root
-        
-#         return leftVal or rightVal
-
         if not root or root == p or root == q: return root
-    
-        rightVal = self.lowestCommonAncestor(root.right, p, q)
-        leftVal = self.lowestCommonAncestor(root.left, p, q)
         
-        if rightVal and leftVal: return root
+        leftVal = self.lowestCommonAncestor(root.left, p,q)
+        rightVal = self.lowestCommonAncestor(root.right, p,q)
         
-        return rightVal or leftVal
+        if leftVal and rightVal:
+            return root
+        
+        return leftVal or rightVal
+
+       
 
         
