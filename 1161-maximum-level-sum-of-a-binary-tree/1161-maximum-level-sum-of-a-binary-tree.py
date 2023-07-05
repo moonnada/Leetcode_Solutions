@@ -29,50 +29,29 @@ class Solution:
             
         '''
         
-#         maxSum = float('-inf')
-#         curSum = 0
-#         curLevel = 0
-#         maxLevel = 0
-#         que = deque([root])
+        maxSum = float('-inf')
         
-#         while que:
-#             curLevel += 1
-            
-#             for _ in range(len(que)):
-#                 curNode = que.popleft()
-#                 curSum += curNode.val
-                
-#                 if curNode.left:
-#                     que.append(curNode.left)
-                    
-#                 if curNode.right:
-#                     que.append(curNode.right)
-                    
-#             if maxSum < curSum:
-#                 maxSum = curSum
-#                 maxLevel = curLevel
-                
-#         return maxLevel
+        curLevel = 0
+        maxLevel = 0
+        que = deque([root])
+        
         if not root: return 0
-        max_sum = float("-inf")
-        max_level = 0
-        current_level = 0
-
-        q = deque([root])
         
-        while q:
-            current_level += 1
-            current_level_sum = 0
-    
-            for _ in range(len(q)):
-                current_node = q.popleft()
-                current_level_sum += current_node.val
-
-                if current_node.left: q.append(current_node.left)
-                if current_node.right: q.append(current_node.right)
-
-            if current_level_sum > max_sum:
-                max_sum = current_level_sum
-                max_level = current_level
-            
-        return  max_level
+        while que:
+            curLevel += 1
+            curSum = 0
+            for _ in range(len(que)):
+                curNode = que.popleft()
+                curSum += curNode.val
+                
+                if curNode.left:
+                    que.append(curNode.left)
+                    
+                if curNode.right:
+                    que.append(curNode.right)
+                    
+            if maxSum < curSum:
+                maxSum = curSum
+                maxLevel = curLevel
+                
+        return maxLevel
