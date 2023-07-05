@@ -34,7 +34,25 @@ class Solution:
                 3.2) iterative over the right and left children of the cur node
                     3.3) if the chiild node exists, recursively call the helper func with the incremented level
         '''
+        res = []
+        que = deque([root])
+        
+        while que:
+            rightSide = None
+            qLen = len(que)
+            
+            for i in range(qLen):
+                node = que.popleft()
                 
+                if node:
+                    rightSide = node
+                    que.append(node.left)
+                    que.append(node.right)
+            
+            if rightSide:
+                res.append(rightSide.val)
+                
+        return res
 #         res = []
 #         que = deque([root])
         
@@ -54,20 +72,20 @@ class Solution:
                 
 #         return res
 
-       
-        if not root: return []
+        #time: o(n), space: o(n)
+#         if not root: return []
         
-        ans = []
+#         ans = []
         
-        def helper(node, level):
-            if level == len(ans):
-                ans.append(node.val)
+#         def helper(node, level):
+#             if level == len(ans):
+#                 ans.append(node.val)
                 
-            for child in [node.right, node.left]:
-                if child:
-                    helper(child, level+1)
+#             for child in [node.right, node.left]:
+#                 if child:
+#                     helper(child, level+1)
                     
         
-        helper(root, 0)
+#         helper(root, 0)
         
-        return ans
+#         return ans
