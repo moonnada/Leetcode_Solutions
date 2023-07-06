@@ -20,15 +20,42 @@ class Solution:
             4. return root
         '''
         
+#         if not root: return root
+#         if not root.left and not root.right: return root
+        
+#         left = self.invertTree(root.left)
+#         right = self.invertTree(root.right)
+        
+#         root.left = right
+#         root.right = left
+        
+#         return root
+        
+        '''
+        M: BFS (queue)
+        
+        P: 
+            1. check edge case(null)
+            2. init a queue
+            3. while queue exists
+                3.1) curnode is popped from queue
+                3.2) if curNode.left , append curNode.right
+                3.3) if curNode.right, append curnode.left
+        '''
+        
         if not root: return root
-        if not root.left and not root.right: return root
+        que = deque([root])
         
-        left = self.invertTree(root.left)
-        right = self.invertTree(root.right)
-        
-        root.left = right
-        root.right = left
-        
+        while que:
+            curNode = que.popleft()
+            curNode.left, curNode.right = curNode.right, curNode.left
+            if curNode.left:
+                que.append(curNode.left)
+            
+            if curNode.right:
+                que.append(curNode.right)
+                
         return root
+            
         
         
