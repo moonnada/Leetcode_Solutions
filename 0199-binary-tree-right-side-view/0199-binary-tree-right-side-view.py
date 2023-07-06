@@ -24,22 +24,51 @@ class Solution:
             4. return ans
         '''
         
-        ans = []
-        que = deque([root])
+#         ans = []
+#         que = deque([root])
         
-        while que:
-            rightSide = None
+#         while que:
+#             rightSide = None
                         
-            for _ in range(len(que)):
-                curNode = que.popleft()
+#             for _ in range(len(que)):
+#                 curNode = que.popleft()
                 
-                if curNode:
-                    rightSide = curNode
-                    que.append(curNode.left)
-                    que.append(curNode.right)
+#                 if curNode:
+#                     rightSide = curNode
+#                     que.append(curNode.left)
+#                     que.append(curNode.right)
                 
-            if rightSide:
-                ans.append(rightSide.val)
+#             if rightSide:
+#                 ans.append(rightSide.val)
                 
+#         return ans
+
+        '''
+        M: DFS
+        
+        P:  
+            1. check edge cases (null..)
+            2. init a list
+            3. make a helper func to get the most right side 
+                3.1) if cur level is equal to the len of list, put the cur value into the list
+                3.2) looping to put cur level's children into list
+                    3.3) if child exists, visit each side recursivly
+            
+        '''
+    
+        if not root: return root
+        
+        ans = []
+        
+        def helper(root, level):
+            if level == len(ans): ans.append(root.val)
+            
+            for child in [root.right, root.left]:
+                if child:
+                    helper(child, level+1)
+                    
+        
+        helper(root, 0)
+        
         return ans
         
