@@ -16,9 +16,10 @@ class Solution:
             1. check edge case(null)
             2. init a que and ans list
             3. while que exists
-                3.1) curnode is popped from queue
-                3.2) init a rightside as none
-                3.3) looping cur level to put each side value into queue
+                3.1) init a rightside as none
+                3.2) looping cur level to put each side value into queue
+                    3.3) curnode is popped from queue
+                    
                 3.4) if rightside val exists, put the val into ans list
             4. return ans
         '''
