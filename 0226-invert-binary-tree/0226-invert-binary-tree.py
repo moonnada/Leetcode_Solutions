@@ -8,41 +8,27 @@ class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         '''
         U:
-            q) root can be null?
-            q) can root have the same numbers multiple times?
+            q) tree can be null?
+            q) tree can have the same number multiple times?
             
-        M: DFS (recursion)
+        M: DFS
         
-        P: 
-            1. check edge cases( null, one node)
-            2. visit each side recursively
-            3. invert each side
+        P:
+            1. check edge cases(null, one node)
+            2. visit both sides(left and right) recursively
+            3. invert each side from root
             4. return root
         '''
         
-#         if not root: return None
+        if not root: return root
+        if not root.left and not root.right: return root
         
-#         left = self.invertTree(root.left)
-#         right = self.invertTree(root.right)
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
         
-#         root.left = right
-#         root.right = left
+        root.left = right
+        root.right = left
         
-#         return root
-
-        if not root: return None
-    
-        que = deque([root])
-    
-        while que:
-            curr = que.popleft()
-            curr.left, curr.right = curr.right, curr.left
-            
-            if curr.left:
-                que.append(curr.left)
-                
-            if curr.right:
-                que.append(curr.right)
-                
         return root
+        
         
