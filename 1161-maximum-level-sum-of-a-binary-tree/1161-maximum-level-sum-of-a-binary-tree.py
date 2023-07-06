@@ -7,39 +7,25 @@
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         '''
-        U:
-            ex)
-                    4
-                    /\
-                   2  5
-                   / 
-                  2 
-                  /
-                  3
-        M: BFS (queue)
-        
-        P:
-            1. init a val for maxSum and curSum
-            2. init a queue
-            3. while que exist
-                3.1) pop cur node from queue
-                3.2) looping check children of cur node
-                3.3) get curSum and add each node into queue
-                3.4) calculate maxSum
+        M: bfs
             
+        p: 
+            1. init a que, maxSum, maxLevel
+            2. while que:
+                2.1) level ++, init the curSum 
+                2.2) looping cur level to get curSum
+                    2.3) put each side into queue
+                2.4) compare cursum and level to get max
         '''
         
         maxSum = float('-inf')
-        
-        curLevel = 0
-        maxLevel = 0
+        maxLevel = curLevel = 0
         que = deque([root])
-        
-        if not root: return 0
         
         while que:
             curLevel += 1
             curSum = 0
+            
             for _ in range(len(que)):
                 curNode = que.popleft()
                 curSum += curNode.val
@@ -50,6 +36,7 @@ class Solution:
                 if curNode.right:
                     que.append(curNode.right)
                     
+            
             if maxSum < curSum:
                 maxSum = curSum
                 maxLevel = curLevel
