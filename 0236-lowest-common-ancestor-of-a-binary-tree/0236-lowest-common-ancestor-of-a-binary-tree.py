@@ -8,26 +8,21 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         '''
-        M: DFS (recursion)
+        M: DFS
         
         P: 
-            1. check edge cases(null, one node)
+            1. check edge cases(null, root.val is equal to p or q)
             2. visit both sides recursively
-            3. if both sides exist, then just retun root
-            4. return one of side when exists
+            3. if both side exist, then return root
+            4. return one of node which exists
+        
         '''
-        #time: o(n), space: o(1) if not countring recursive, otherwise o(n)
         
         if not root or root == p or root == q: return root
         
-        leftVal = self.lowestCommonAncestor(root.left, p,q)
-        rightVal = self.lowestCommonAncestor(root.right, p,q)
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p,q)
         
-        if leftVal and rightVal:
-            return root
+        if left and right: return root
         
-        return leftVal or rightVal
-
-       
-
-        
+        return left or right
