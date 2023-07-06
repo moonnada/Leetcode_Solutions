@@ -8,84 +8,37 @@ class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         '''
         U:
-            q) what if there is no right val?
-            
+            q) tree can have a same num multiple times?
+        
         M: BFS
         
-        p: (bfs)  
-            1. init a list for answer
-            2. init a queue with the root node
-            3. while queue exists
-                3.1) init a val to store the right side
-                3.2) get a length of cur level of queue
-                3.3) loop through the nodes in the cur level
-                    3.4) dequeue the next node from the queue
-                    3.5) if the node exists
-                        3.6) update the rightside val to store the cur node
-                        3.7) enqueue left and right side of the cur node
-                3.8) after processing all nodes in the cur level, if rightside is not null, then add the cur val to the ans list
-                
-            
-            (dfs)
-            1. check edge cases
-            2. init a list for ans
-            3. make a helper func to visit recursively
-                3.1) if curLevel is eqaul to the len of the ans list, put the curVal into the list
-                3.2) iterative over the right and left children of the cur node
-                    3.3) if the chiild node exists, recursively call the helper func with the incremented level
+        P: 
+            1. check edge case(null)
+            2. init a que and ans list
+            3. while que exists
+                3.1) curnode is popped from queue
+                3.2) init a rightside as none
+                3.3) looping cur level to put each side value into queue
+                3.4) if rightside val exists, put the val into ans list
+            4. return ans
         '''
-        res = []
+        
+        ans = []
         que = deque([root])
         
         while que:
             rightSide = None
-            qLen = len(que)
-            
-            for i in range(qLen):
-                node = que.popleft()
+                        
+            for _ in range(len(que)):
+                curNode = que.popleft()
                 
-                if node:
-                    rightSide = node
-                    que.append(node.left)
-                    que.append(node.right)
-            
+                if curNode:
+                    rightSide = curNode
+                    que.append(curNode.left)
+                    que.append(curNode.right)
+                
             if rightSide:
-                res.append(rightSide.val)
+                ans.append(rightSide.val)
                 
-        return res
-#         res = []
-#         que = deque([root])
+        return ans
         
-#         while que:
-#             rightSide = None
-#             qLen = len(que)
-            
-#             for i in range(qLen):
-#                 node = que.popleft()
-#                 if node:
-#                     rightSide = node
-#                     que.append(node.left)
-#                     que.append(node.right)
-            
-#             if rightSide:
-#                 res.append(rightSide.val)
-                
-#         return res
-
-        #time: o(n), space: o(n)
-#         if not root: return []
-        
-#         ans = []
-        
-#         def helper(node, level):
-#             if level == len(ans):
-#                 ans.append(node.val)
-                
-#             for child in [node.right, node.left]:
-#                 if child:
-#                     helper(child, level+1)
-                    
-        
-#         helper(root, 0)
-        
-#         return ans
