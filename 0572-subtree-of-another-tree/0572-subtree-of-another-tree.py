@@ -20,18 +20,14 @@ class Solution:
         
         '''
         
-        def helper(node):
-            if not node: return False
-            
-            elif is_identical(node, subRoot):
-                return True
-            
-            return helper(node.left) or helper(node.right)
+        if not root: return False
         
-        def is_identical(node1, node2):
-            if not node1 or not node2:
-                return node1 is None and node2 is None
-            
-            return node1.val == node2.val and is_identical(node1.left, node2.left) and is_identical(node1.right, node2.right)
+        if self.isSameTree(root, subRoot): return True
         
-        return helper(root)
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    
+    def isSameTree(self, root, subRoot):
+        if root and subRoot:
+            return root.val == subRoot.val and self.isSameTree(root.left, subRoot.left) and self.isSameTree(root.right, subRoot.right)
+            
+        return root is subRoot
