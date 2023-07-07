@@ -14,9 +14,11 @@ class Solution:
         
         P:
             1. check edge cases(null..)
-            2. make a helper func to visit nodes recursively
-                2.1) check curnodes values of both trees are equal
-                2.2) 
+            2. check cur trees are same by using a helper func
+            3. keep comparing both sides of root with subroot 
+            4. in a helper func, 
+                4.1) compare current val of both trees
+                4.2) keep comparing both sides of node
         
         '''
         
@@ -24,10 +26,11 @@ class Solution:
         
         if self.isSameTree(root, subRoot): return True
         
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        return self.isSubtree(root.left , subRoot) or self.isSubtree(root.right, subRoot)
     
     def isSameTree(self, root, subRoot):
         if root and subRoot:
             return root.val == subRoot.val and self.isSameTree(root.left, subRoot.left) and self.isSameTree(root.right, subRoot.right)
-            
+        
         return root is subRoot
+        
