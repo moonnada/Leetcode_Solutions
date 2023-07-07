@@ -32,6 +32,6 @@ class Solution:
             if not node1 or not node2:
                 return node1 is None and node2 is None
             
-            return (node1.val == node2.val and is_identical(node1.left, node2.left) and is_identical(node1.right, node2.right))
+            return node1.val == node2.val and is_identical(node1.left, node2.left) and is_identical(node1.right, node2.right)
         
         return helper(root)
