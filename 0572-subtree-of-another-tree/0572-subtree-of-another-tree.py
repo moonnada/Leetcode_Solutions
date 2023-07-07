@@ -17,8 +17,8 @@ class Solution:
             2. check cur trees are same by using a helper func
             3. keep comparing both sides of root with subroot 
             4. in a helper func, 
-                4.1) compare current val of both trees
-                4.2) keep comparing both sides of node
+                4.1) check both trees are none. if it is, return true
+                4.2) keep comparing both sides of node and values
         
         '''
         
@@ -30,8 +30,6 @@ class Solution:
     
     def isSameTree(self, root, subRoot):
         if not root and not subRoot: return True
-        
         if root and subRoot:
             return root.val == subRoot.val and self.isSameTree(root.left, subRoot.left) and self.isSameTree(root.right, subRoot.right)
-        
         
