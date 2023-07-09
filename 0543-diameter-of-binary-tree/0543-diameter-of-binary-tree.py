@@ -27,6 +27,7 @@ class Solution:
             self.diameter = max(self.diameter, left + right)
             return max(left, right) + 1
         
+        if not root: return 0
         self.diameter = 0
         dfs(root)
         
