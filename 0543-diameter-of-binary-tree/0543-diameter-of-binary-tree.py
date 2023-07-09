@@ -20,17 +20,16 @@ class Solution:
         '''
         
         def dfs(root):
-            nonlocal diameter
             if not root: return 0
             
             left = dfs(root.left)
             right = dfs(root.right)
-            diameter = max(diameter, left + right)
+            self.diameter = max(self.diameter, left + right)
             return max(left, right) + 1
         
-        diameter = 0
+        self.diameter = 0
         dfs(root)
         
-        return diameter
+        return self.diameter
             
         
