@@ -13,24 +13,26 @@ class Solution:
         M: DFS
         
         P:
-            1. check edge case(one child)
-            2. make a helper fuc to calculate length
-                2.1) if not root: return 0
-                2.2) return 1 + max( root.left , root.right)
+            1. check edge case(empty)
+            2. init a diameter as 0
+            3. run a helper func
+            4. in a helper func,
+                4.1) check if root is null. if it is, return 0
+                4.2) visit both sides recursively 
+                4.3) update the diameter val
+                4.4) return max val between left and right + 1
+           
         '''
-        
         def dfs(root):
             if not root: return 0
-            
             left = dfs(root.left)
             right = dfs(root.right)
-            self.diameter = max(self.diameter, left + right)
+            self.diameter = max( self.diameter, left + right)
             return max(left, right) + 1
         
         if not root: return 0
         self.diameter = 0
         dfs(root)
-        
         return self.diameter
-            
+
         
