@@ -14,29 +14,36 @@ class Solution:
         M: BFS => shortest path 
                         
         P:
-            1. check edge cases
-            2. traverse the maze list to find exits. if find, put the val into a list
-            3. once exits list is ready, compare with entrance by looping
+            1. init cols and rows 
+            2. init a queue, set and result
+            3. while queue exists
+                3.1) pop a row and col from queue
+                3.2) check whether cur row and col is on exit. if it is return the result
+                    3.3) make a loop to visit every direction. if cur position is not a wall and not visited, put the position into que and set
+                3.4) result is incremented
         '''
         
         rows, cols = len(maze), len(maze[0])
         start = tuple(entrance)
         que = deque([start])
-        res = 0
         visit = set([start])
+        res = 0
         
         while que:
+            
             for i in range(len(que)):
                 r,c = que.popleft()
-                if [r,c] != entrance and (r==0 or c==0 or r==rows-1 or c == cols-1):
+                if [r,c]!= entrance and (r == 0 or c==0 or r==rows-1 or c == cols-1):
                     return res
-                
-                for dr, dc in [(1,0), (0,1), (-1,0), (0,-1)]:
+
+                for dr,dc in [(1,0), (-1,0), (0,1), (0,-1)]:
                     row, col = r+dr, c+dc
-                    if 0<=row<rows and 0<=col<cols and maze[row][col] =="." and (row,col) not in visit:
+                    if 0<=row<rows and 0<=col<cols and maze[row][col] == "." and (row,col) not in visit:
                         que.append((row,col))
-                        visit.add((row,col))
-                        
-            res += 1
+                        visit.add((row, col))
+
+            res+=1
             
         return -1
+        
+        
