@@ -26,6 +26,5 @@ class Solution:
             for key in rooms[room]:
                 if not key in visitedRoom:
                     stack.append(key)
-
-        return len(rooms) == len(visitedRoom)
-            
+                    
+        return len(visitedRoom) == len(rooms)
