@@ -7,17 +7,20 @@
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         '''
-        U:
+        P:
+            1. check edge case(null)
+            2. find the node that need to delete
+            3. after its found, delete the node and keep the tree BST after deleting the node
             
         '''
-        if not root: return root
+        if not root: return None
         
-        if key > root.val:
-            root.right = self.deleteNode(root.right,key)
-        elif key < root.val:
+        if root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        elif root.val > key:
             root.left = self.deleteNode(root.left, key)
         else:
-            if not root.left and not root.right: root = None
+            if not root.right and not root.left: root = None
             elif root.right:
                 root.val = self.successor(root)
                 root.right = self.deleteNode(root.right, root.val)
@@ -26,7 +29,8 @@ class Solution:
                 root.left = self.deleteNode(root.left, root.val)
                 
         return root
-                
+    
+    
     def successor(self, root):
         root = root.right
         while root.left:
@@ -37,5 +41,4 @@ class Solution:
         root = root.left
         while root.right:
             root = root.right
-            
         return root.val
