@@ -13,7 +13,7 @@ class Solution:
                 
             q) input tree can be empty?
             
-        M: DFS (recursion)
+        M: In order
         
         P:
             1. check edge case(null)
@@ -22,22 +22,22 @@ class Solution:
             4. get a min val
         '''
         
-        if not root: return -1
+        if not root: return 
+        nodeList = []
+        minVal = 1e9
         
-        minVal = 99999999
-        self.nodeList = []
+        def inorder(root):
+            if not root: return
+            
+            inorder(root.left)
+            nodeList.append(root.val)
+            inorder(root.right)
+            
+        inorder(root)
         
-        self.inorder(root)
-        for i in range(1, len(self.nodeList)):
-            minVal = min(abs(self.nodeList[i] - self.nodeList[i-1]), minVal )
-        
+        for i in range(1, len(nodeList)):
+            minVal = min(nodeList[i]-nodeList[i-1], minVal)
+            
         return minVal
-    
-    def inorder(self, root):
-        if not root: return
-        
-        self.inorder(root.left)
-        self.nodeList.append(root.val)
-        self.inorder(root.right)
         
     
