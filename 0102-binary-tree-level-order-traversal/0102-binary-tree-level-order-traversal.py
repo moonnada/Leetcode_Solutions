@@ -23,12 +23,13 @@ class Solution:
             
         '''
         if not root: return []
-        ans = []
         que = deque([root])
+        ans = []
         level = 0
         
         while que:
             ans.append([])
+            
             for _ in range(len(que)):
                 curNode = que.popleft()
                 ans[level].append(curNode.val)
@@ -37,8 +38,8 @@ class Solution:
                     que.append(curNode.left)
                 if curNode.right:
                     que.append(curNode.right)
-                    
             level+=1
             
         return ans
+                
         
