@@ -29,38 +29,23 @@ class Solution:
         Time: o(n), space: o(n)
         '''
         
-#         self.prev = None
-#         self.minVal = 1e9
+        self.prev = None
+        self.minVal = 1e9
         
-#         def inorder(node):
-#             if not node: return
-            
-#             inorder(node.left)
-#             if self.prev:
-#                 self.minVal = min(self.minVal, node.val - self.prev)
-            
-#             self.prev = node.val
-#             inorder(node.right)
-            
-#         inorder(root)
-        
-#         return self.minVal
-        self.minDistance = 1e9
-        # Initially, it will be null.
-        self.prevNode = None
-
         def inorder(node):
-            if node is None:
-                return
+            if not node: return
+            
             inorder(node.left)
-            # Find the difference with the previous value if it is there.
-            if self.prevNode is not None:
-                self.minDistance = min(self.minDistance, node.val - self.prevNode)
-            self.prevNode = node.val
+            if self.prev is not None:
+                self.minVal = min(self.minVal, node.val - self.prev)
+            
+            self.prev = node.val
             inorder(node.right)
-
+            
         inorder(root)
-        return self.minDistance
+        
+        return self.minVal
+       
         
         
     
