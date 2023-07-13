@@ -17,27 +17,50 @@ class Solution:
         
         P:
             1. check edge case(null)
-            2. init a min val
-            3. visit both sides recursively
-            4. get a min val
+            2. init a min and prev
+            3. make a helper func to visit node in the inorder way
+                3.1) if node is null, retuen null
+                3.2) visit the left child
+                3.3) if prev val exists, get min val 
+                3.4) visit the right child
+            4. run the helper func
+                        
+            
+        Time: o(n), space: o(n)
         '''
         
-        if not root: return 
-        nodeList = []
-        minVal = 1e9
+#         self.prev = None
+#         self.minVal = 1e9
         
-        def inorder(root):
-            if not root: return
+#         def inorder(node):
+#             if not node: return
             
-            inorder(root.left)
-            nodeList.append(root.val)
-            inorder(root.right)
+#             inorder(node.left)
+#             if self.prev:
+#                 self.minVal = min(self.minVal, node.val - self.prev)
             
+#             self.prev = node.val
+#             inorder(node.right)
+            
+#         inorder(root)
+        
+#         return self.minVal
+        self.minDistance = 1e9
+        # Initially, it will be null.
+        self.prevNode = None
+
+        def inorder(node):
+            if node is None:
+                return
+            inorder(node.left)
+            # Find the difference with the previous value if it is there.
+            if self.prevNode is not None:
+                self.minDistance = min(self.minDistance, node.val - self.prevNode)
+            self.prevNode = node.val
+            inorder(node.right)
+
         inorder(root)
+        return self.minDistance
         
-        for i in range(1, len(nodeList)):
-            minVal = min(nodeList[i]-nodeList[i-1], minVal)
-            
-        return minVal
         
     
