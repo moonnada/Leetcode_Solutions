@@ -21,25 +21,32 @@ class Solution:
                     3.3) put cur node into queue and list
             4. return list        
             
+            
+        M: DFS
+        
+        P:
+            1. check edge case(null)
+            2. init an ans list and level value
+            3. put curNode.val into list
+            4. ans.append([])
+            5. visit curnode.left and put the val into list
+            6. visit curnode.right and put the val into list
         '''
+      
+        levels = []
         if not root: return []
-        que = deque([root])
-        ans = []
-        level = 0
         
-        while que:
-            ans.append([])
-            
-            for _ in range(len(que)):
-                curNode = que.popleft()
-                ans[level].append(curNode.val)
+        def helper(node, level):
+            if len(levels) == level:
+                levels.append([])
                 
-                if curNode.left:
-                    que.append(curNode.left)
-                if curNode.right:
-                    que.append(curNode.right)
-            level+=1
+            levels[level].append(node.val)
             
-        return ans
+            if node.left:
+                helper(node.left, level+1)
+            if node.right:
+                helper(node.right, level+1)
                 
+        helper(root, 0)
         
+        return levels
