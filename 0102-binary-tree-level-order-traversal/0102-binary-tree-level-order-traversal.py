@@ -27,26 +27,31 @@ class Solution:
         P:
             1. check edge case(null)
             2. init an ans list and level value
-            3. put curNode.val into list
-            4. ans.append([])
-            5. visit curnode.left and put the val into list
-            6. visit curnode.right and put the val into list
+            3. init a helper fuc
+                3.1) if len of list == level, start a new []
+                3.2) put cur node val into list
+                3.3) if curnode.left exists, visit there
+                3.4) if curnode.right exists, visit there
         '''
-      
-        levels = []
+
         if not root: return []
         
+        levels = []
+        
         def helper(node, level):
-            if len(levels) == level:
-                levels.append([])
-                
+            if len(levels) == level: 
+                 levels.append([])
+
             levels[level].append(node.val)
             
             if node.left:
                 helper(node.left, level+1)
+                
             if node.right:
                 helper(node.right, level+1)
                 
         helper(root, 0)
         
         return levels
+        
+        
