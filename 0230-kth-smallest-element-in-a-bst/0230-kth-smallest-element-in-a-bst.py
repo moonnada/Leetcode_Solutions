@@ -16,7 +16,6 @@ class Solution:
         
         P:
             1. check edge case(null)
-            2. init a min and prev 
             3. init a helper to visit inorder way
                 3.1) if root is none: return null
                 3.2) visit the left child
@@ -25,23 +24,18 @@ class Solution:
             4. traverse the list and when k==0, return the val
                 
         '''
-        if not root: return 0
-        ans = []
-        min = 1e9
+        stack = []
         
-        def dfs(node):
-            if not node: return 
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+                
+            if not stack: break
+        
+            node = stack.pop()
+            k -= 1
             
-            dfs(node.left)
-            ans.append(node.val)
-            dfs(node.right)
+            if k == 0: return node.val
             
-        dfs(root)
-
-        for i in range(len(ans)):
-            k-=1
-            if k == 0: return ans[i]
-        
-
-        return -1
-        
+            root = node.right
