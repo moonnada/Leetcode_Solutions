@@ -26,39 +26,24 @@ class Solution:
                     3.5) if spell elemnt * potion[mid] < success, left = mid +1
                 3.6) put len of potions - idx 
         '''
-        list1=[]
+        
         potions.sort()
-        # // some test cases are not sorted
-        for s in spells:
-            # // binary search on left most value i.e greater than success
-            left,right,index=0,len(potions)-1,len(potions)# index is len(potions) in worst case where no values matches with potions values
-            while left<=right:
-                mid=(left+right)//2
-                if s*potions[mid]>=success:
-                    right=mid-1
-                    index=mid
-                else:
-                    left=mid+1
-            # // add all possible values by total length -index
-            list1.append(len(potions)-index)
-        return list1
-#         potions.sort()
-#         ans = []
+        ans = []
         
-#         for spell in spells:
-#             left , right,idx = 0, len(potions)-1, len(potions)
+        for spell in spells:
+            left , right,idx = 0, len(potions)-1, len(potions)
             
-#             while left <= right:
-#                 mid = left + (right-left) // 2
+            while left <= right:
+                mid = left + (right-left) // 2
                 
-#                 if spell * potions[mid] >= success:
-#                     right = mid -1
-#                     idx = right
-#                 else:
-#                     left = mid + 1
+                if spell * potions[mid] >= success:
+                    right = mid -1
+                    idx = mid
+                else:
+                    left = mid + 1
                     
-#             ans.append(len(potions) - idx)
+            ans.append(len(potions) - idx)
         
-#         return ans
+        return ans
         
         
