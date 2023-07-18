@@ -8,7 +8,8 @@ class Solution:
             - cant have the same numbers continuously
             - must write in o(lgn) time.
             
-            ex) [9,2,1] => return 0
+            ex) [9,2,1] => return 0 
+            ex) [1,5,3,9] => return 1 or 3
             
         M: binary search
         
@@ -23,11 +24,13 @@ class Solution:
         left, right = 0, len(nums) -1
         
         while left <= right:
-            # mid = (left + right) // 2
             mid = left + (right-left) // 2
+            
+            #check the left neighbor is greater
             if nums[mid] < nums[mid-1] and mid > 0:
                 right = mid-1
-            
+                
+            #check the right neighbor is greater
             elif mid < len(nums)-1 and nums[mid] < nums[mid+1]:
                 left = mid+1
             
