@@ -2,36 +2,26 @@ class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         '''
         U:
-            keypoints:
-            - the input arr contains multiple peeks, return the index to any of the peaks.
-            - the input list can have negative values
-            - cant have the same numbers continuously
-            - must write in o(lgn) time.
+            keypoints: nums[-1] = nums[n] = -inf
             
-            ex) [9,2,1] => return 0 
-            ex) [1,5,3,9] => return 1 or 3
-            
-        M: binary search
-        
-        P: 
+            ex) [1,2,1,3,5,6,4] 
+                L    M       R
+        P:
             1. init two ptrs as left and right
             2. while left <= right,
-                2.1) check the left neighbor is greater. if it is, the right val is moved to the left side
-                2.2) check the right neighbor is greater. if it is, the left val is moved to the right side
-                2.3) else return the mid index ()
-                
+                2.1) get the mid point
+                2.2) check the right greater. if mid < len(list) -1 and list[mid] < list[mid+1], left = mid + 1
+                2.3) check the left greater. if 0< mid and list[mid] > list[mid-1], right = mid -1
+            3. return mid
         '''
-        left, right = 0, len(nums) -1
+        
+        left, right = 0, len(nums)-1
         
         while left <= right:
             mid = left + (right-left) // 2
             
-            #check the left neighbor is greater
-            if nums[mid] < nums[mid-1] and mid > 0:
-                right = mid-1
-                
-            #check the right neighbor is greater
-            elif mid < len(nums)-1 and nums[mid] < nums[mid+1]:
-                left = mid+1
+            if mid < len(nums)-1 and nums[mid] < nums[mid+1]: left = mid +1
+            
+            elif mid > 0 and nums[mid] < nums[mid-1]: right = mid-1
             
             else: return mid
