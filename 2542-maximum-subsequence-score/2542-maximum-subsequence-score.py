@@ -6,22 +6,21 @@ class Solution:
                 1. len(nums1) = len(num2)
                 2. return the maximum possible
         '''
-        pairs = [(n1, n2) for n1, n2 in zip(nums1, nums2)]
-        pairs = sorted(pairs, key=lambda p:p[1], reverse=True)
-        
-        minHeap = []
-        n1Sum = 0
         res = 0
+        totalSum = 0
+        heap = []
         
-        for n1, n2 in pairs:
-            n1Sum += n1
-            heapq.heappush(minHeap, n1)
-            
-            if len(minHeap) > k:
-                n1pop = heapq.heappop(minHeap)
-                n1Sum -= n1pop
-            
-            if len(minHeap) == k:
-                res = max(res, n1Sum * n2)
+        merged = [(nums2[i] , nums1[i]) for i in range(len(nums1))]
+        merged.sort(reverse=True)
+        
+        for maxOf2, num1val in merged:
+            if len(heap) == k:
+                totalSum -= heapq.heappop(heap)
                 
+            totalSum += num1val
+            heapq.heappush(heap, num1val)
+            
+            if len(heap) == k:
+                res = max(res, totalSum * maxOf2)
+        
         return res
