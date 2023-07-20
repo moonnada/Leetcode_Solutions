@@ -14,14 +14,15 @@ class Solution:
             3. iterate over each tuple in the merged list
                 3.1) if len of heap == k, it removes the smallest element from the heap and subtract the value from nums1
                 3.2) update totalsum by adding the current num1val and the it to the heap
-                3.3) if len of heap == k, calculate the score
-        
-        
+                3.3) if len of heap == k, calculate the score        
         '''
         res = 0
         totalSum = 0
         heap = []
         
+        #ex) num1 = [1,3,3,2], num2 = [2,1,3,4]
+        # merged = [(2,1), (1,3), (3,3), (4,2)]
+        # sorted = [(4,2), (3,3), (2,1), (1,3)]
         merged = [(nums2[i], nums1[i]) for i in range(len(nums1))]
         merged.sort(reverse=True)
         
