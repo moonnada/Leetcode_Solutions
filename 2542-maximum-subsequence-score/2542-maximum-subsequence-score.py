@@ -14,7 +14,9 @@ class Solution:
             3. iterate over each tuple in the merged list
                 3.1) if len of heap == k, it removes the smallest element from the heap and subtract the value from nums1
                 3.2) update totalsum by adding the current num1val and the it to the heap
-                3.3) if len of heap == k, calculate the score        
+                3.3) if len of heap == k, calculate the score  
+                
+        t: o(nlgn) , s: o(n+k)
         '''
         res = 0
         totalSum = 0
