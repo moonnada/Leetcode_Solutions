@@ -8,17 +8,7 @@ class Solution:
             2. iterative until n+1 to convert binary numbers
         '''
         
-        def count(x):
-            cnt = 0
-            while x != 0:
-                x &= x-1
-                cnt += 1
-            
-            return cnt
-        
         ans = [0] * (n+1)
-        
-        for x in range(n+1):
-            ans[x] = count(x)
-            
+        for x in range(1, n+1):
+            ans[x] = ans[x & (x-1)] + 1
         return ans
