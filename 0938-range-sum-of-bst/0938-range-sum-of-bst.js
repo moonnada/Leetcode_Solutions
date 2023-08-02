@@ -44,16 +44,39 @@ var rangeSumBST = function(root, low, high) {
     
 //     return sum
     
+    /*
+    BFS - queue
+    
+    1. init a queue 
+    2. while queue exists
+        2.1) pop a node from queue
+        2.2) if the node val >= low and node val <= high, add its val to sum
+        2.3) if the node has a left child, put the node into queue
+        2.4) if the node has a right child, put the node into queue
+    3. return sum
+    */
+//     let sum = 0;
+//     let queue = [root];
+//     while(queue.length){
+//         let node = queue.pop();
+//         if(node.val >= low && node.val <= high){
+//             sum += node.val;
+//         }
+//         if(node.left) queue.push(node.left);
+//         if(node.right) queue.push(node.right);
+//     }
+    
+//     return sum
+    
     let sum = 0;
-    let queue = [root];
-    while(queue.length){
-        let node = queue.pop();
-        if(node.val >= low && node.val <= high){
-            sum += node.val;
-        }
-        if(node.left) queue.push(node.left);
-        if(node.right) queue.push(node.right);
+    
+    const dfs = (node) => {
+        if(!node) return null;
+        if(node.val >= low && node.val <= high) sum += node.val;
+        if(node.left) dfs(node.left);
+        if(node.right) dfs(node.right);
     }
     
-    return sum
+    dfs(root);
+    return sum;
 };
