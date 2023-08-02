@@ -69,14 +69,12 @@ var rangeSumBST = function(root, low, high) {
 //     return sum
     
     let sum = 0;
-    
-    function dfs(node){
-        if(!node) return null;
+    let queue = [root];
+    while(queue.length){
+        let node = queue.pop();
         if(node.val >= low && node.val <= high) sum += node.val;
-        if(node.left) dfs(node.left);
-        if(node.right) dfs(node.right);
+        if(node.left) queue.push(node.left);
+        if(node.right) queue.push(node.right);
     }
-    
-    dfs(root);
     return sum;
-};
+}
