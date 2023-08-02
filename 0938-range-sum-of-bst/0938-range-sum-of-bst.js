@@ -29,17 +29,31 @@ var rangeSumBST = function(root, low, high) {
         3. return sum
     */
     
-    let sum = 0
-    const dfs = (node) => {
-        if(node.val >= low && node.val <= high) sum += node.val;
+//     let sum = 0
+//     const dfs = (node) => {
+//         if(!node) return null
+//         if(node.val >= low && node.val <= high) sum += node.val;
         
-        if(node.val > low && node.left !== null) dfs(node.left);
+//         if(node.val > low && node.left !== null) dfs(node.left);
         
-        if(node.val < high && node.right !== null) dfs(node.right);
-    }
+//         if(node.val < high && node.right !== null) dfs(node.right);
+//     }
         
-    dfs(root)
+//     dfs(root)
     
+    
+//     return sum
+    
+    let sum = 0;
+    let queue = [root];
+    while(queue.length){
+        let node = queue.pop();
+        if(node.val >= low && node.val <= high){
+            sum += node.val;
+        }
+        if(node.left) queue.push(node.left);
+        if(node.right) queue.push(node.right);
+    }
     
     return sum
 };
