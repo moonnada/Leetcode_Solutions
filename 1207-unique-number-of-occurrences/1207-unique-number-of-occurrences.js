@@ -28,27 +28,19 @@ var uniqueOccurrences = function(arr) {
         1. check edge cases(null, one element)
         2. init a hashmap
         3. iterative the input arr to put key and value into map
-        4. iterative the map to check occurrences. if there are not unique, return false
-        5. return true
+        4. init a set to put map's values.
+        5. return set.size == map.size
         
     time: o(n), space:o(n)
     */
     
-    let map = new Map();
-    
+   let map = new Map();
     for(let i=0; i<arr.length; i++){
-//         if(map.has(num)){
-//             map.set(num, (map.get(num)+1));
-//         } else {
-//             map.set(num, 1)
-//         }
-        
-        map.set(arr[i], map.get(arr[i])+1 || 1);
-        
+        map.set( arr[i], map.get(arr[i]) + 1 || 1);
     }
     
     let set = new Set(map.values());
-    return set.size == map.size
     
+    return set.size == map.size;
     
 };
