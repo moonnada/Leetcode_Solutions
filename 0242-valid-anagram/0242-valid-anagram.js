@@ -4,29 +4,26 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-   /*
-    U)
-    q) input str can have any char? even empty space?
+    /*
+    map
     
-    M) sort
-    P) 
-    1. check edge cases (if both strs length are different, then return false)
-    2. sort alphabetically both strs
-    3. init a map
-    4. traverse sorted 's' str to put key and val
-    5. traverse sorted 't' str and if any cnt is different, then return false
-    6. out of loop, return true
+    1. init a map (key: char, value: cnt)
+    2. chech edge cases
+    3. iterative the s str to put key and value
+    4. iterative the t str to compare each key and value. if find different, return false.
+    5. return true
     */
     
     if(s.length !== t.length) return false;
+    let table = new Array(26).fill(0);
     
-    let map = new Map();
     for(let i=0; i<s.length; i++){
-        map[s[i]] = map[s[i]] ? map[s[i]] + 1 : 1;
+        table[s.charCodeAt(i) - 'a'.charCodeAt(0)]++;
     }
     
     for(let i=0; i<t.length; i++){
-        if(!map[t[i]]) return false
-        map[t[i]]--;
-    } return true
-}
+        table[t.charCodeAt(i) - 'a'.charCodeAt(0)]--;
+        if(table[t.charCodeAt(i) -'a'.charCodeAt(0)]  < 0) return false;
+    }
+    return true
+};
