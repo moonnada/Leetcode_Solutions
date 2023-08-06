@@ -24,6 +24,7 @@ var threeSum = function(nums) {
     
     nums.sort((a,b) => a-b);
     let ans = [];
+    
     for(let i=0; i<nums.length-2; i++){
         if(i>0 && nums[i] == nums[i-1]) continue;
         
@@ -32,12 +33,11 @@ var threeSum = function(nums) {
         
         while(mid < end){
             let sum = nums[i] + nums[mid] + nums[end];
-            if( sum == 0){
-                ans.push([nums[i],nums[mid],nums[end]]);
-                
+            if( sum == 0) {
+                ans.push([nums[i], nums[mid], nums[end]]);
+            
                 while(nums[mid] == nums[mid+1]) mid++;
                 while(nums[end] == nums[end-1]) end--;
-                
                 mid++;
                 end--;
             } else {
@@ -46,6 +46,5 @@ var threeSum = function(nums) {
             
         }
     }
-    return ans
-    
+    return ans;
 };
