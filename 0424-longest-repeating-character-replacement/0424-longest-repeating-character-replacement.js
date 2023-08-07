@@ -4,20 +4,36 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-   let left = 0, right = 0, max = 0;
+    /*
+    Input: s = "AABABBB", k = 1
+
+    left: 0
+    right: 2
+    
+    if right - left +1 - max >k
+        map[left]--;
+        left++;
+        
+   map: [
+   A: 2
+   B:
+   ]
+    */
+    let left = 0;
+    let right = 0;
+    let max = 0;
     let map = new Map();
     
     while(right < s.length){
-        let curChar = s[right];
-        map[curChar] = map[curChar] + 1 || 1;
+        let curChar = s.charAt(right);
+        map.set(curChar, (map.get(curChar) || 0) + 1)
         
-        max = Math.max(max, map[curChar]);
+        max = Math.max(max, map.get(curChar));
         
-        if(right - left + 1 - max > k) {
-            map[s[left]]--;
+        if(right-left+1-max > k){
+            map.set(s.charAt(left), map.get(s.charAt(left)) -1)
             left++;
         } right++;
-        
     }
-    return right-left
+    return right-left;
 };
