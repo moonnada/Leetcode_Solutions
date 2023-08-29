@@ -5,16 +5,16 @@
 var reverseWords = function(s) {
     const ans = [];
     let word = "";
-    
     for(let i=0; i<s.length; i++){
-        if(s.charAt(i) === ' '){
+        if(s.charAt(i) === " "){
             word && ans.unshift(word);
             word = "";
         } else {
-            word += s.charAt(i)
+            word += s.charAt(i);
         }
     }
     
     word && ans.unshift(word);
-    return ans.join(' ')
+    
+    return ans.join(' ');
 };
