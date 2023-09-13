@@ -3,20 +3,16 @@
  * @return {number}
  */
 var numUniqueEmails = function(emails) {
-    /*
-    
-    */
-    
-    let uniqueEmail = new Set();
+   let uniqueEmails = new Set();
     for(let email of emails){
         let [local, domain] = email.split('@');
         local = local.replace(/\./g, '');
-        
         let plusIdx = local.indexOf('+');
+        
         if(plusIdx !== -1){
-            local = local.substring(0,plusIdx);
+            local = local.substring(0, plusIdx)
         }
-        uniqueEmail.add(local + '@' + domain)
+        uniqueEmails.add(local + '@' + domain)
     }
-    return uniqueEmail.size
+    return uniqueEmails.size
 };
