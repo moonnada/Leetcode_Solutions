@@ -10,16 +10,17 @@ var isAnagram = function(s, t) {
     1. compare both str length. if they are different, then return false
     
     */
-    if(s.length !== t.length) return false;
+   if(s.length !== t.length) return false;
+    let map = {};
     
-    const map = {};
-    
-    for(let c of s){
-        map[c] = (map[c] || 0) + 1;
+    for(let char of s){
+        map[char] = (map[char] || 0) + 1;
     }
     
-    for(let c of t){
-        if(!map[c]) return false;
-        map[c]--;
-    } return true
+    for(let char of t){
+        if(!map[char]) return false
+        map[char]--;
+    }
+    
+    return true
 };
