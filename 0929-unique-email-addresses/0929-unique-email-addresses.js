@@ -14,5 +14,6 @@ var numUniqueEmails = function(emails) {
         }
         uniqueEmails.add(local + '@' + domain)
     }
+    console.log(uniqueEmails)
     return uniqueEmails.size
 };
