@@ -4,25 +4,12 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    /*
-    U: 
-    q) can input arr be empty or have negqtive numbers?
-    
-    1: 3
-    2: 2
-    3: 1
-    
-    M:
-    hashmap (key: element, val: cnt)
-    bucket sort
-   */
-    
     let map = new Map();
     let bucket = [];
     let ans = [];
     
-    for( num of nums){
-        map.set( num, (map.get(num) || 0) + 1 )
+    for(let i=0; i<nums.length; i++){
+        map.set(nums[i], (map.get(nums[i]) || 0) + 1 )
     }
     
     for(let [num, freq] of map){
@@ -31,7 +18,7 @@ var topKFrequent = function(nums, k) {
     
     for(let i=bucket.length-1; i>=0; i--){
         if(bucket[i]) ans.push(...bucket[i])
-        if(ans.length === k) break
+        if(ans.length === k) break;
     }
     return ans
 };
