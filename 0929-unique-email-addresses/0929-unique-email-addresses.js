@@ -20,7 +20,7 @@ var numUniqueEmails = function(emails) {
     
     const removeDot = local.replace(/\./g, '');
     const findPlus = removeDot.indexOf('+');
-    const validLocal = findPlus === -1 ? removeDot : removeDot.substring(0, findPlus);
+    const validLocal = findPlus === -1 ? removeDot : removeDot.slice(0, findPlus);
     
     const validEmail = validLocal + '@' + domain;
     
