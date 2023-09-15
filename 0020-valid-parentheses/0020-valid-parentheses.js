@@ -4,34 +4,27 @@
  */
 var isValid = function(s) {
     /*
-    ex) s = "[{( ) ( ) }]"
+    stack
     
-    stack = [, {, (
-    
-    1. if cur char is a open parenthese? put into stack
-    2. if cur char is a closed parenthese? pop the prev char if they are match, if not return false
+   if cur char is open parentheses ? put into stack
+    else pop from stack and compare the cur char and popped value. if they are not matched, return false
     */
     
     let stack = [];
     for(let i=0; i<s.length; i++){
-        let curChar = s.charAt(i);
-        
-        switch(curChar){
+        switch(s[i]){
             case '(':
                 stack.push(')');
                 break;
-                
             case '{':
                 stack.push('}');
                 break;
-            
             case '[':
                 stack.push(']');
                 break;
-            
             default:
-                if(curChar !== stack.pop()) return false;
-                break;
+                if(s[i] !== stack.pop()) return false;
+                break
         }
     }
     
