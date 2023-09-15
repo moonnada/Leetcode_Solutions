@@ -33,7 +33,7 @@ IXXCCM
         "M": 1000
     }
     
-    value = 0;
+    let value = 0;
     for(let i = 0; i < s.length-1; i+=1){
         symbols[s[i]] < symbols[s[i+1]] ? value -= symbols[s[i]]: value += symbols[s[i]]
     }
