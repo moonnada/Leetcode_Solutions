@@ -12,17 +12,15 @@ var threeSum = function(nums) {
      3. init two pointer
     */
     
-    nums.sort((a,b) => a-b);
-    let ans = [];
-    
+   nums.sort((a,b) => a-b);
+    let ans= [];
     for(let i=0; i<nums.length-2; i++){
         if(i>0 && nums[i] === nums[i-1]) continue;
-        
         let mid = i+1;
         let end = nums.length-1;
         
-        while(mid < end){
-            let sum = nums[i] + nums[mid] + nums[end];
+        while(mid <end){
+            let sum = nums[mid] + nums[i] + nums[end];
             if(sum === 0){
                 ans.push([nums[i], nums[mid], nums[end]]);
                 
@@ -31,10 +29,11 @@ var threeSum = function(nums) {
                 
                 mid++;
                 end--;
-            } else {
-                sum > 0 ? end-- : mid++;
-            }
-        }
+            }else {
+                
+            
+            sum > 0 ? end-- : mid++;
+        }}
     }
     return ans
 };
