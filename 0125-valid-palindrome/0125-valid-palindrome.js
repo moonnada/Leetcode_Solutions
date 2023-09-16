@@ -25,8 +25,7 @@ var isPalindrome = function(s) {
     let left = 0;
     let right = onlyAlphabets.length-1;
     while(left <= right){
-        console.log(onlyAlphabets[left])
-        console.log(onlyAlphabets[right])
+        
         if(onlyAlphabets[left] !== onlyAlphabets[right]) return false;
         left++;
         right--
