@@ -15,19 +15,20 @@ var isPalindrome = function(s) {
         3.2) else return false
     5. return true
     */
+ 
+    if(s.length === 0 ) return true;
     
-    if(s.length === 0 || s.length ===1) return true;
-    s = s.toLowerCase();
-    s = s.replace(/[^A-Za-z0-9]/g, '');
+    const lowercases = s.toLowerCase();
+    const removeSpaces = lowercases.split(" ").join("");
+    const onlyAlphabets = removeSpaces.replace(/[^a-zA-Z0-9 ]/g, '');
+    
     let left = 0;
-    let right = s.length-1;
+    let right = onlyAlphabets.length-1;
     while(left <= right){
-        if(s.charAt(left) === s.charAt(right)){
-            left++;
-            right--;
-        } else {
-            return false;
-        }
-    }
-    return true
+        console.log(onlyAlphabets[left])
+        console.log(onlyAlphabets[right])
+        if(onlyAlphabets[left] !== onlyAlphabets[right]) return false;
+        left++;
+        right--
+    } return true
 }
