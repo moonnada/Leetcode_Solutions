@@ -21,12 +21,12 @@ var characterReplacement = function(s, k) {
         let curChar = s[right];
         map.set(curChar, (map.get(curChar) || 0) + 1 );
         
-        max = Math.max(max, map.get(curChar));
+        max = Math.max(map.get(curChar), max)
         
-        if(right-left + 1 - max > k){
-            map.set(s[left], map.get(s[left]) -1 )
+        if(right-left+1 - max > k){
+            map.set(s[left], map.get(s[left]) -1);
             left++;
-        } right++;
-    }
-    return right - left
+        }  right ++;
+        
+    } return right - left
 }
