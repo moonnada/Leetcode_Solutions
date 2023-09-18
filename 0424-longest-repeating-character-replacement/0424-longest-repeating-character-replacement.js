@@ -11,10 +11,11 @@ var characterReplacement = function(s, k) {
     
     sliding window 
     */
+ 
     let left = 0;
     let right = 0;
-    let max = 0;
     let map = new Map();
+    let max = 0;
     
     while(right < s.length){
         let curChar = s[right];
@@ -22,10 +23,10 @@ var characterReplacement = function(s, k) {
         
         max = Math.max(max, map.get(curChar));
         
-        if(right-left+1 - max > k){
-            map.set(s[left], map.get(s[left]) -1);
+        if(right-left + 1 - max > k){
+            map.set(s[left], map.get(s[left]) -1 )
             left++;
         } right++;
     }
     return right - left
-};
+}
