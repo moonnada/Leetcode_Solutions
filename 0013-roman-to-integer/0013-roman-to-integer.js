@@ -3,32 +3,29 @@
  * @return {number}
  */
 var romanToInt = function(s) {
-   /*
-   I C   D
-   1 100 500
-   */
-    const syn = {
+    const sym = {
         'I' : 1,
         'V' : 5,
-'X' :10,
-'L'  :50,
-'C'            :100,
-'D'             :500,
-'M'             :1000
+        'X' : 10,
+        'L' : 50,
+        'C' : 100,
+        'D' : 500,
+        'M' : 1000
     }
     
-   let ans = 0;
+    /*
+    if (s[i] < s[i+1] ) result = s[i+1] - s[i]
+    else // s[i] > s[i+1], result += s[i]
+    */
+    
+    let result = 0;
+    // let curVal = 0
     for(let i=0; i<s.length; i++){
-        let cur = syn[s[i]];
-        let next = syn[s[i+1]];
-        
-        if(cur < next){
-            ans += next - cur;
-            i++;
-        } else {
-            ans += cur
+        if(sym[s[i]] < sym[s[i+1]]) {
+            result += sym[s[i+1]] - sym[s[i]];
+            i++ 
         }
+        else result += sym[s[i]]
     }
-    
-    return ans
+    return result
 };
