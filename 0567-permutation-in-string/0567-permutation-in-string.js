@@ -6,40 +6,43 @@
 var checkInclusion = function(s1, s2) {
   /*
    s1 = "ab", s2 = "eidbaooo"
-   rs1 = 'ba'
+   
+   => need "ab" or "ba"
    1. if s1.length > s2.length, return false
-   2. reverse s1
    
   */
-
-    if(s1.length > s2.length) return false;
     
-    let needed = new Map();
+    if(s1.length > s2.length) return false;
+    let map = new Map();
+    
     for(let i=0; i<s1.length; i++){
-        needed[s1[i]] = needed[s1[i]] ? needed[s1[i]]+1 : 1;
+        map.set(s1[i], (map.get(s1[i]) || 0) +1);
     }
     
     let left = 0;
     let right = 0;
-    let requiredLength = s1.length;
+    let requiredLen = s1.length;
     
-    while(right < s2.length){
-        if(needed[s2[right]] > 0){
-            requiredLength--;
+    while( right < s2.length){
+        if(map.get(s2[right]) > 0){
+            requiredLen--;
         }
         
-        if(requiredLength=== 0) return true;
+        if(requiredLen === 0) return true;
         
-        needed[s2[right]]--;
+        map.set(s2[right], (map.get(s2[right]) || 0) -1)
         right++;
         
         if(right-left === s1.length){
-            if(needed[s2[left]] >= 0){
-                requiredLength++;
+            if(map.get(s2[left]) >= 0){
+                requiredLen++;
             }
-            needed[s2[left]]++;
+            
+            map.set(s2[left], (map.get(s2[left]) || 0) +1)
             left++
         }
     }
+    
     return false
+
 };
