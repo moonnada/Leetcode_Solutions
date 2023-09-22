@@ -16,7 +16,7 @@ var minEatingSpeed = function(piles, h) {
     let start = 0;
     let end = Math.max(...piles);
     while(start <= end){
-        let mid = Math.floor((start + end) / 2);
+        let mid = Math.floor(start + (end - start) / 2);
         let hr = 0;
         for(let pile of piles){
             hr += Math.ceil(pile / mid);
