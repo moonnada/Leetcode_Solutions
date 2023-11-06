@@ -12,10 +12,10 @@
  */
 var isBalanced = function(root) {
     if(!root) return true;
-    return Math.abs(height(root.left) - height(root.right)) < 2 && isBalanced(root.left) && isBalanced(root.right);
+    return Math.abs( maxHeight(root.left) - maxHeight(root.right)) < 2 && isBalanced(root.left) && isBalanced(root.right);
     
-    function height(root){
+    function maxHeight(root){
         if(!root) return -1;
-        return 1 + Math.max(height(root.left), height(root.right))
+        return 1 + Math.max(maxHeight(root.left), maxHeight(root.right))
     }
 };
