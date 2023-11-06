@@ -26,14 +26,12 @@ var invertTree = function(root) {
     while(queue.length){
         let curVal = queue.pop();
         if(curVal){
-               let tmp = curVal.left;
-        curVal.left = curVal.right;
-        curVal.right = tmp;
-        
-     
-        
-        if(curVal.left) queue.push(curVal.left);
-        if(curVal.right) queue.push(curVal.right);
+            let tmp = curVal.left;
+            curVal.left = curVal.right;
+            curVal.right = tmp;
+
+            if(curVal.left) queue.push(curVal.left);
+            if(curVal.right) queue.push(curVal.right);
         }
         
     }
