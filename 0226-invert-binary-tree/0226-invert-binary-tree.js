@@ -11,25 +11,31 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-  //dfs  
-  // if(!root) return root;
-  //   let left = invertTree(root.left);
-  //   let right = invertTree(root.right);
-  //   root.right = left;
-  //   root.left = right;
-  //   return root
     
-    //bfs
+//     if(!root) return root;
+//     let left = invertTree(root.left);
+//     let right = invertTree(root.right);
+//     root.left = right;
+//     root.right = left;
+//     return root
+ 
+    
     let queue = [root];
-    if(!root) return root;
+    if(!queue) return root;
+    
     while(queue.length){
         let curVal = queue.pop();
-        let temp = curVal.left;
+        if(curVal){
+               let tmp = curVal.left;
         curVal.left = curVal.right;
-        curVal.right = temp;
+        curVal.right = tmp;
+        
+     
+        
         if(curVal.left) queue.push(curVal.left);
-        if(curVal.right) queue.push(curVal.right)
+        if(curVal.right) queue.push(curVal.right);
+        }
+        
     }
     return root
-    
-};
+}
