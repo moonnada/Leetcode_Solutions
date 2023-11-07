@@ -15,20 +15,22 @@ var diameterOfBinaryTree = function(root) {
     DFS
     
     1. in a helper func, if root not exist, return 0
-    2. else 1 + helper func
+    2. 
     */
-    
-    if(!root) return 0;
     let max = 0;
+    
     dfs(root);
     
     return max;
     
     function dfs(root){
         if(!root) return 0;
+        
         let left = dfs(root.left);
         let right = dfs(root.right);
-        max = Math.max(left+ right, max);
-        return Math.max(right, left) + 1
+        
+        max = Math.max(left+right, max);
+        return Math.max(left, right) + 1
     }
+    
 };
