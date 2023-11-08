@@ -20,7 +20,7 @@ var isSameTree = function(p, q) {
     
     let queue = [[p,q]];
     while(queue.length){
-        let [p,q] = queue.shift();
+        let [p,q] = queue.pop();
         if(!q && !p) return true;
         if(!p || !q) return false;
         if(p.val !== q.val ) return false;
