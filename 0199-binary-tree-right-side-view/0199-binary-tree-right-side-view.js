@@ -21,17 +21,30 @@ var rightSideView = function(root) {
         3.4) if curNode.left exists, put into queue and height++
     */
     
-    if(!root) return [];
-    let queue = [[root, 0]];
-    let ans = [];
+//     if(!root) return [];
+//     let queue = [[root, 0]];
+//     let ans = [];
     
-    while(queue.length){
-        let [curNode, level] = queue.shift();
+//     while(queue.length){
+//         let [curNode, level] = queue.shift();
         
-        if(ans.length === level) ans.push(curNode.val);
+//         if(ans.length === level) ans.push(curNode.val);
         
-        curNode.right && queue.push([curNode.right, level+1]);
-        curNode.left && queue.push([curNode.left, level+1]);
+//         curNode.right && queue.push([curNode.right, level+1]);
+//         curNode.left && queue.push([curNode.left, level+1]);
+//     }
+//     return ans
+    
+    if(!root) return [];
+    let ans = [];
+    pre(root, 0);
+    return ans;
+    
+    function pre(node, h){
+        if(!node) return;
+        ans[h] = node.val;
+        pre(node.left, h+1)
+        pre(node.right, h+1)
+        
     }
-    return ans
 };
