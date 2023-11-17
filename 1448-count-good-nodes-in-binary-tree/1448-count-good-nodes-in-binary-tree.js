@@ -23,7 +23,7 @@ var goodNodes = function(root) {
     helper(root.right, root.val);
    
     function helper(node, maxVal){
-        if(!node) return [];
+        if(!node) return;
         if(node.val >= maxVal) cnt++;
         
         helper(node.left, Math.max(maxVal, node.val));
