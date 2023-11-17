@@ -19,7 +19,9 @@ var goodNodes = function(root) {
     
     if(!root) return 0;
     let cnt = 1;
-    
+     helper(root.left, root.val);
+    helper(root.right, root.val);
+   
     function helper(node, maxVal){
         if(!node) return [];
         if(node.val >= maxVal) cnt++;
@@ -28,8 +30,6 @@ var goodNodes = function(root) {
         helper(node.right, Math.max(maxVal, node.val))
     }
     
-    helper(root.left, root.val);
-    helper(root.right, root.val);
-    
+  
     return cnt
 };
