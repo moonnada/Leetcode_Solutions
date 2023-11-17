@@ -22,22 +22,24 @@ var levelOrder = function(root) {
     3.3) after visiting, add the cur queue val into ans arr
    */
     
-    if(!root) return [];
+   if(!root) return [];
+    
     let queue = [root];
     let ans = [];
     
     while(queue.length){
-        let queLevel = queue.length;
+        let queueLevel = queue.length;
         let curLevel = [];
-        for(let i=0; i<queLevel; i++){
+        for(let i=0; i<queueLevel; i++){
             let cur = queue.shift();
             
             if(cur.left) queue.push(cur.left);
             if(cur.right) queue.push(cur.right);
             
-            curLevel.push(cur.val)
+            curLevel.push(cur.val);
         }
-        
-        ans.push(curLevel)
-    }return ans
+        ans.push(curLevel);
+    }
+    
+    return ans
 };
