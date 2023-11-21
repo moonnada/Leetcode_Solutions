@@ -12,15 +12,14 @@
  * @return {TreeNode}
  */
 var buildTree = function(preorder, inorder) {
-    if(!inorder || inorder.length < 1) return null;
-    
+   if(!inorder || inorder.length <1) return null;
     let root = new TreeNode(preorder.shift());
     let index = inorder.indexOf(root.val);
     let leftTree = inorder.slice(0, index);
-    let rightTree = inorder.slice(index+1);
+    let rightTree = inorder.slice(index + 1);
     
     root.left = buildTree(preorder, leftTree);
-    root.right = buildTree(preorder, rightTree)
+   root.right =  buildTree(preorder, rightTree);
     
     return root
 };
