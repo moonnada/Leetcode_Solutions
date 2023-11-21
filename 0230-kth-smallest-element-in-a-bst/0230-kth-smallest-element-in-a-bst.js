@@ -17,17 +17,35 @@ var kthSmallest = function(root, k) {
     2. to iterate the sorted arr to return the 'k' smallest
     */
     
-    if(!root) return -1;
-    let sorted = [];
-    inOrder(root);
+//     if(!root) return -1;
+//     let sorted = [];
+//     inOrder(root);
     
-    function inOrder(node){
-        if(!node) return;
-        if(node.left) inOrder(node.left);
-        sorted.push(node.val);
-        if(node.right) inOrder(node.right)
+//     function inOrder(node){
+//         if(!node) return;
+//         if(node.left) inOrder(node.left);
+//         sorted.push(node.val);
+//         if(node.right) inOrder(node.right)
+        
+//     }
+    
+//     return sorted[k-1]
+    
+    let cnt = 0;
+    let ans = 0;
+    
+    dfs(root);
+    return ans;
+    
+    function dfs(node){
+        if(!root) return;
+        if(node.left) dfs(node.left);
+        cnt++;
+        if(cnt === k) {
+            ans = node.val; 
+            return;
+        }
+        if(node.right) dfs(node.right)
         
     }
-    
-    return sorted[k-1]
 };
