@@ -2,6 +2,9 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
 #         1. init a dict
         
+
+        if len(s) != len(t): return False
+        
         count = defaultdict(int)
         
         for i in s:
