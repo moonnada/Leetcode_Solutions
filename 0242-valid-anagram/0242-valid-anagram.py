@@ -1,36 +1,24 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        
-        '''
-        U: 
-        q) can input str be empty?
-        q) any letter can be in input str?
-        
-        M: 
-        hashmap (key: num, val: cnt)
-        
-        p:
-        1. check each str's length and if they are different, return false
-        2. init maps for the two input strs to count
-        3. traverse the first input str to put key and value inside a map. put input s, t both
-        4. traverse the input s'map to compare t's map count
-        
-        I: 
-        
-        R: 
-            time: o(n), space: o(n)
-        '''
-        
-        if len(s) != len(t): return False
-        
-        countS, countT = {}, {}
-        
-        for i in range(len(s)):
-            countS[s[i]] = countS.get(s[i], 0) + 1
-            countT[t[i]] = countT.get(t[i], 0) + 1
+        count = defaultdict(int)
+        for i in s:
+            count[i] += 1
             
-        for i in countS:
-            if countS[i] != countT.get(i,0): return False
+        for i in t:
+            count[i] -= 1
             
+        for val in count.values():
+            if val != 0: return False
+        
         return True
+        
+#         1. init a hashmap to put the 's' input
+#         2. traverse the 't' str to find anagram
+#           2.1) if hashmap has the cur element, reduce the cnt
+#            2.2) else return false
+#          3. if map not have any element, return true else false
+
+
     
+        
+        
