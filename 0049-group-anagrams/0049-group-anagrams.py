@@ -11,16 +11,17 @@ class Solution:
 #             1.2) if map has the cur sorted word, then put its array
 #             1.2) if not, then put the word as a new key and value in the map
 #         2. return the map's value
+
+        # time = o(m * nlgn)
+        # space = o(n)
         
         anagrams = {}
-        
-        for str in strs:
-            temp = ''.join(sorted(str))
+        for word in strs:
+            temp = ''.join(sorted(word))
             
             if temp in anagrams:
-                anagrams[temp].append(str)
-                
+                anagrams[temp].append(word)
             else:
-                anagrams[temp] = [str]
+                anagrams[temp] = [word]
                 
         return list(anagrams.values())
