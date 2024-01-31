@@ -1,20 +1,26 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        '''
-            1. init a map and mapping charCount to list of anagrams
-            2. iterate a loop to get count by using unicode
-            3. inside a loop, create a new loop to count each letter
-            4. append cur word into map
-            5. return map's val
-        '''
         
-        hashmap = collections.defaultdict(list)
+    
+#         q) can have the same letters consecutively?
+#         asd
+        
+#         0. init a hashmap (key: a word, value: array of the anagram words)
+#         1. traverse the input arr to make group anagrams
+#             1.1) sort the cur word
+#             1.2) if map has the cur sorted word, then put its array
+#             1.2) if not, then put the word as a new key and value in the map
+#         2. return the map's value
+        
+        anagrams = {}
+        
         for str in strs:
-            count = [0] * 26
-            for cnt in str:
-                count[ord(cnt) - ord('a')] += 1
+            temp = ''.join(sorted(str))
             
-            hashmap[tuple(count)].append(str)
-            
-        return hashmap.values()
-            
+            if temp in anagrams:
+                anagrams[temp].append(str)
+                
+            else:
+                anagrams[temp] = [str]
+                
+        return list(anagrams.values())
