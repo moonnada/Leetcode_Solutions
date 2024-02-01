@@ -14,18 +14,18 @@ class Solution:
                 2.3) get the max longest
         '''
         
-        curSet = set(nums)
+        hashset = set(nums)
         longest = 0
         
-        for num in curSet:
-            if num-1 not in curSet:
+        for num in hashset:
+            if num-1 not in hashset:
                 curVal = num
                 curCnt = 1
                 
-                while curVal+1 in curSet:
+                while curVal+1 in hashset:
                     curVal+=1
                     curCnt+=1
                 
-                longest = max(curCnt, longest)
-            
+                longest = max(longest, curCnt)
+                
         return longest
