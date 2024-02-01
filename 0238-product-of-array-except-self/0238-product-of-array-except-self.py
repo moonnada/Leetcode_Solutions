@@ -1,29 +1,31 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         '''
-        U:  q) input arr can be empty?
-            q) input arr is sorted?
-            
-                 
-        M: make an index for pre and post
+        Input: nums = [1,2,3,4]
+        Output: [24,12,8,6]
         
-        P:
-            1. init ans arr 
-            2. init a preIndex as 1 and get product by iterating a loop
-            3. init a postIndex as 1 and get ans by iterating a loop
-            
+        left = [1,1,2,6]
+        right = [24,12,4,1]
+        
+        left[0] = 1
+        left[1] = left[0] * num[1]
+        left[2] = left[1] * nums[2]
+        left[3] = left[2] * nums[3]
         '''
+        length = len(nums)
+        left, right, ans = [0]*length, [0]*length, [0]*length
         
-        ans = [1] * len(nums)
-        preIndex = 1
-        for i in range(len(nums)):
-            ans[i] = preIndex
-            preIndex *= nums[i]
+        left[0] = 1
+        for i in range(1, length):
+            left[i] = left[i-1] * nums[i-1]
+            
+        right[length-1] = 1
+        for i in reversed(range(length-1)):
+            right[i] = right[i+1] * nums[i+1]
+            
         
-        postIndex = 1
-        for i in reversed(range(len(nums))):
-            ans[i] *= postIndex
-            postIndex *= nums[i]
+        for i in range(length):
+            ans[i] = left[i] * right[i]
             
         return ans
-        
+            
