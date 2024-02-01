@@ -1,6 +1,8 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         '''
+        [basic solution] 
+        
         Input: nums = [1,2,3,4]
         Output: [24,12,8,6]
         
@@ -11,7 +13,7 @@ class Solution:
         left[1] = left[0] * num[1]
         left[2] = left[1] * nums[2]
         left[3] = left[2] * nums[3]
-        '''
+        
         
         length = len(nums)
         
@@ -30,3 +32,28 @@ class Solution:
             ans[i] = left[i] * right[i]
             
         return ans
+        
+        
+        [optimal solution]
+        
+        Input: nums = [1,2,3,4]
+        Output: [24,12,8,6]
+        
+        ans = [1, 1, 2,6]
+            = [,8,6]
+        
+        '''
+        ans = [1] * len(nums)
+        preIdx = 1
+        for i in range(len(nums)):
+            ans[i] = preIdx
+            preIdx *= nums[i]
+            
+        postIdx = 1
+        for i in reversed(range(len(nums))):
+            ans[i] *= postIdx
+            postIdx *= nums[i]
+            
+        return ans
+            
+        
