@@ -1,100 +1,34 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         '''
-        U:
-            q) is input arr sorted?
-            q) can arr be empty?
-            q) can I return without sort?
-            
-            ex) [-1,0,1,2,-1,-4]
-            =>[ [-1,0,1], [-1,-1,2] ]
-            
-                [-4,-1,-1,0,1,2]
-                  L           R
-                  
-        M: two ptrs
+        Input: nums = [-1,0,1,2,-1,-4]
+        Output: [[-1,-1,2],[-1,0,1]]
         
-        P: 
-            1. sort input arr
-            2. traverse the input arr
-                2.1) check there is a duplicate num for the iterator. if it is, just pass the num
-                2.2) init two ptrs(left and right)
-                2.3) while left < right:
-                2.4) if sum of the cur three ptrs  > 0: right--
-                2.5) else if sum < 0: left++
-                2.6) else put three ptrs in to ans arr
-                2.7) left ptr is incremented to avoid adding duplicate
-                2.8) make another loop to avoid duplicate 
-                
-                
-          
-          1. sort input arr
-          2. traverse the arr to find 3sum is equal to 0
-            2.1) if curIndex > 0 and curVal is same num as the previous one, then just move to the next step
-            2.2) init two ptrs
-            2.3) while left < right:
-            2.4) if curthreeSum > 0: right--
-            2.5) elseif < 0: left++
-            2.6) else add the three ptrs into ans
-            2.7) to avoid adding duplicate nums, check if there is a same num
+        sort = [-4,-1,-1,0,1,2]
+        
+        1. sort the input list
+        2. init 2 ptr (left, right)
         '''
-        
         ans = []
         nums.sort()
         
-        for i, val in enumerate(nums):
-            if i > 0 and val == nums[i-1]: continue
-            
+        for i,val in enumerate(nums):
+            if i>0 and val == nums[i-1]: continue
+                
             left, right = i+1, len(nums)-1
             
             while left < right:
                 threeSum = val + nums[left] + nums[right]
-                if threeSum < 0:
+                
+                if threeSum > 0:
+                    right -=1
+                elif threeSum < 0:
                     left += 1
-                elif threeSum > 0:
-                    right -= 1
                 else:
-                    ans.append([val, nums[left],nums[right]])
-                    left += 1
+                    ans.append([val, nums[left], nums[right]])
+                    left+=1
                     
                     while nums[left] == nums[left-1] and left < right:
-                        left+= 1
-                    
-        return ans
-                    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#         ans = []
-#         nums.sort()
-        
-#         for i,val in enumerate(nums):
-#             if i>0 and val == nums[i-1]: continue
-            
-#             left, right = i+1, len(nums)-1
-            
-#             while left < right:
-#                 threeSum = val + nums[left] + nums[right]
-#                 if threeSum > 0:
-#                     right -= 1
-#                 elif threeSum < 0:
-#                     left += 1
-#                 else:
-#                     ans.append([val, nums[left], nums[right]])
-#                     left += 1
-                    
-#                     while nums[left] == nums[left-1] and left < right:
-#                         left+=1
+                        left+=1
                         
-#         return ans
+        return ans
