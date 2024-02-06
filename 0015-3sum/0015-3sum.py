@@ -18,25 +18,22 @@ class Solution:
         '''
         
         nums.sort()
-        ans =[]
-        for i, val in enumerate(nums):
-            if i > 0 and nums[i] == nums[i-1]: continue
+        ans = []
+        
+        for i,val in enumerate(nums):
+            if i>0 and nums[i] == nums[i-1]: continue
                 
             mid, right = i+1, len(nums)-1
             
             while mid < right:
-                curSum = val + nums[mid] + nums[right]
+                threeSum = val + nums[mid]+ nums[right]
                 
-                if curSum > 0:
-                    right -=1
-                elif curSum < 0:
-                    mid+=1
-                else:
+                if threeSum > 0: right -= 1
+                elif threeSum < 0: mid += 1
+                else: 
                     ans.append([val, nums[mid], nums[right]])
                     mid+=1
                     
-                    while nums[mid] == nums[mid-1] and mid < right:
-                        mid += 1
+                    while mid < right and nums[mid] == nums[mid-1]: mid+=1
                         
         return ans
-        
