@@ -1,31 +1,18 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         '''
-        U:
-        q) can input str be empty?
-        q) can it distinguish upper and lower cases?
+                    l r
+        Input: s = "dvdf"
+        Output: 3
         
-        
-        ex) "pwwkew"
-             LR
-               R
-               
-        ex) "abcabcbb"     
-             LR
-             
-        M: sliding window, hashset
-        
-        P: 
-            1. check edge cases(empty, one letter)
-            2. init a set and leftptr
-            3. traverse the input str
-                3.1) while curVal is in set, then remove the val in the set and left++
-                3.2) out of while loop(which means curVal is not in the set), put the curVal in the set
-                3.3) get max length
-                            
+       1. init a set
+       2. put the 1st char into the set
+       3. iterative the input str from 1 to the end
+        3.1) if cur char is not in the set, curCnt++. get the max length too
+        3.2) else left++
         '''
         
-        if len(s) == 0 or len(s)==1: return len(s)
+        if len(s) == 0 or len(s) == 1: return len(s)
         
         charSet = set()
         
@@ -37,6 +24,9 @@ class Solution:
                 left += 1
                 
             charSet.add(s[right])
-            maxCnt = max(maxCnt, right - left + 1)
-        
+            maxCnt = max( maxCnt, right-left+1)
+            
         return maxCnt
+                
+        
+    
