@@ -12,21 +12,20 @@ class Solution:
         3.2) else left++
         '''
         
-        if len(s) == 0 or len(s) == 1: return len(s)
-        
-        charSet = set()
-        
-        left = maxCnt = 0
+        hashSet = set()
+        maxCnt = left = 0
         
         for right in range(len(s)):
-            while s[right] in charSet:
-                charSet.remove(s[left])
+            while s[right] in hashSet:
+                hashSet.remove(s[left])
                 left += 1
-                
-            charSet.add(s[right])
-            maxCnt = max( maxCnt, right-left+1)
+            
+            hashSet.add(s[right])
+            maxCnt = max(maxCnt, right-left+1)
             
         return maxCnt
+        
+      
                 
         
     
