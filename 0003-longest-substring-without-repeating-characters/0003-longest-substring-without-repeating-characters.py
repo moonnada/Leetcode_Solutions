@@ -1,19 +1,15 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         '''
-                    l r
-        Input: s = "dvdf"
+                      r
+                     r 
+        Input: s = "pwwkew"
         Output: 3
         
-       1. init a set
-       2. put the 1st char into the set
-       3. iterative the input str from 1 to the end
-        3.1) if cur char is not in the set, curCnt++. get the max length too
-        3.2) else left++
-        '''
         
+        '''
         hashSet = set()
-        maxCnt = left = 0
+        left = longest  = 0
         
         for right in range(len(s)):
             while s[right] in hashSet:
@@ -21,11 +17,6 @@ class Solution:
                 left += 1
             
             hashSet.add(s[right])
-            maxCnt = max(maxCnt, right-left+1)
+            longest = max(longest, right-left+1)
             
-        return maxCnt
-        
-      
-                
-        
-    
+        return longest
