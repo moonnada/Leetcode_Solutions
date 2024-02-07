@@ -1,21 +1,24 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         '''
+                    0123
                        r
                     l
         Input: s = "AABABBABB", k = 1
         Output: 4
+        A:4
+        B:5
         
-        
-        while k >0, 
-            r++
-            curLen++
-        
+        1. init a map to count each alphabet in the str
+        2. iterative over the input str to count each alphabet in the map
+            2.1)count each letter
+            2.2)if cur position - max countVal > k, left++, remove the curleft in map
+            2.3)else get the max length
         
         '''
+        
         count = {}
-        ans = 0
-        left = 0
+        left = maxLen = 0
         
         for right in range(len(s)):
             count[s[right]] = count.get(s[right], 0) + 1
@@ -24,5 +27,9 @@ class Solution:
                 count[s[left]] -= 1
                 left += 1
                 
-            ans = max(ans, right - left +1)
-        return ans
+            
+            maxLen = max(maxLen, right - left +1)
+        
+        return maxLen
+            
+       
