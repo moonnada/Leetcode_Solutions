@@ -1,31 +1,21 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         '''
-        U:
-            q) what if s is empty?
-            
-            ex) s = "[ { (  ) } ]"
-            
-        M: stack
-        
-        P:  
-            0. check edge case( if len(s) % 2 ==1, false)
-            1. init a stack
-            2. traverse the input str to put each char into stack
-                2.1) check cur char is any open parentheses. if it is, put into stack
-                2.2) else if stack is not empty and top of stack is not equal to the curval, return false. else pop
-            3. return stack is empty as true
-                
+        1. loop the input s and if one of closed parentheses is found, pop its open bracket
+        2. else // open bracket, push it to the stack
         '''
+        
         stack = []
-        hm =  {'(' : ')', '{': '}', '[': ']'} 
+        pairs = {
+            '(': ')',
+            '{': '}',
+            '[':']'
+        }
         
         for i in s:
-            if i in hm:
+            if i in pairs:
                 stack.append(i)
-            else:
-                if not stack or hm[stack[-1]] != i:
-                    return False
-                else:
-                    stack.pop()
-        return not stack
+            elif len(stack) == 0 or i != pairs[stack.pop()]:
+                return False
+            
+        return len(stack) == 0
