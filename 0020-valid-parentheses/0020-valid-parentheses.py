@@ -15,7 +15,10 @@ class Solution:
         for i in s:
             if i in pairs:
                 stack.append(i)
-            elif len(stack) == 0 or i != pairs[stack.pop()]:
-                return False
+            else:
+                if not stack or pairs[stack[-1]] != i:
+                    return False
+                else:
+                    stack.pop()
             
         return len(stack) == 0
