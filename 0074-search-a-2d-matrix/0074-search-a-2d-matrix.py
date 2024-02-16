@@ -5,6 +5,7 @@ class Solution:
         
         top, bot = 0, rows-1
         
+        #choose valid a row
         while top <= bot:
             row = (top + bot) // 2
             if target > matrix[row][-1]:
@@ -17,9 +18,9 @@ class Solution:
         if not (top <= bot):
             return False
         
-        row = (top + bot) // 2
         left, right = 0, cols-1
         
+        #choose a valid value in columns
         while left <= right:
             mid = (left+right) // 2
             if target > matrix[row][mid]:
