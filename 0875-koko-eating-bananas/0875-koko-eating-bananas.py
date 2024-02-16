@@ -13,13 +13,12 @@ class Solution:
         while left <= right:
             mid = (left + right) // 2
             hrs = 0
-            
             for pile in piles:
-                hrs += math.ceil(pile / mid)
-                    
+                hrs += math.ceil(pile/mid)
+                
             if hrs > h:
                 left = mid + 1
             else:
                 right = mid - 1
-        
+                
         return left
