@@ -4,30 +4,30 @@ class Solution:
         cols = len(matrix[0])
         
         top, bot = 0, rows-1
-        
-        #choose valid a row
         while top <= bot:
             row = (top + bot) // 2
             if target > matrix[row][-1]:
                 top = row + 1
             elif target < matrix[row][0]:
-                bot = row -1
+                bot = row - 1
             else:
                 break
                 
-        if not (top <= bot):
-            return False
+        if top > bot: return False
         
-        left, right = 0, cols-1
+        left, right = 0, cols -1
         
-        #choose a valid value in columns
         while left <= right:
-            mid = (left+right) // 2
+            mid = (left + right) // 2
+            
             if target > matrix[row][mid]:
                 left = mid + 1
+
             elif target < matrix[row][mid]:
-                right = mid -1
+                right = mid - 1
+            
             else:
                 return True
-        
+            
         return False
+            
