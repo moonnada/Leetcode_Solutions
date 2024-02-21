@@ -35,7 +35,8 @@ var rightSideView = function(root) {
         if(!node) return;
         
         ans[level] = node.val;
-        pre(node.left, level+1)
+        
+        pre(node.left, level+1);
         pre(node.right, level+1)
     }
 };
