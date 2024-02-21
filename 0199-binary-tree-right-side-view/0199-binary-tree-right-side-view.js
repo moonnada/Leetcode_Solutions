@@ -12,31 +12,33 @@
  */
 var rightSideView = function(root) {
     //bfs
-//     if(!root) return [];
-//     let queue = [[root, 0]];
-//     let ans = [];
-    
-//     while(queue.length){
-//         let [curNode, level] = queue.shift();
-//         if(ans.length === level) ans.push(curNode.val);
-        
-//         curNode.right && queue.push([curNode.right, level+1])
-//         curNode.left && queue.push([curNode.left, level+1])
-//     }
-//     return ans
-    
-    //dfs
     if(!root) return [];
+    let queue = [[root, 0]];
     let ans = [];
-    pre(root, 0);
-    return ans;
     
-    function pre(node, level){
-        if(!node) return;
+    while(queue.length){
+        let [curVal, curLevel] = queue.shift();
         
-        ans[level] = node.val;
+        if(ans.length === curLevel){
+            ans.push(curVal.val)
+        }
         
-        pre(node.left, level+1);
-        pre(node.right, level+1)
+        curVal.right && queue.push([curVal.right, curLevel+1])
+        curVal.left && queue.push([curVal.left, curLevel+1])
     }
+    return ans
+    //dfs
+//     if(!root) return [];
+//     let ans = [];
+//     pre(root, 0);
+//     return ans;
+    
+//     function pre(node, level){
+//         if(!node) return;
+        
+//         ans[level] = node.val;
+        
+//         pre(node.left, level+1);
+//         pre(node.right, level+1)
+//     }
 };
