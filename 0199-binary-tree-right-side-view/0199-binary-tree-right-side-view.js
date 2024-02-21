@@ -22,8 +22,8 @@ var rightSideView = function(root) {
         4.3) if curval has the right child, then put the val into queue
         4.4) if curval has the left child, put the val into que
     5. return ans
-    */
-    if(!root) return [];
+    
+       if(!root) return [];
     let queue = [[root, 0]];
     let ans = [];
     
@@ -35,19 +35,33 @@ var rightSideView = function(root) {
         if(curNode.left) queue.push([curNode.left, level+1])
     }
     return ans
+    */
+ 
     
     //dfs
-//     if(!root) return [];
-//     let ans = [];
-//     pre(root, 0);
-//     return ans;
+    /*
+    1. check edge case
+    2. init an ans arr
+    3. call a helper func has two parameters(node, level)
+    4. return ans
     
-//     function pre(node, level){
-//         if(!node) return;
+    5. init a helper func
+        5.1) if node not exists, then return
+        5.2) put the cur val and level into ans arr
+        5.3) visit the left child recursively
+        5.4 visit the right child recursively
+    */
+    
+    if(!root) return [];
+    let ans = [];
+    pre(root, 0);
+    return ans;
+    
+    function pre(node, level){
+        if(!node) return;
+        ans[level] = node.val
         
-//         ans[level] = node.val;
-        
-//         pre(node.left, level+1);
-//         pre(node.right, level+1)
-//     }
+        pre(node.left, level+1)
+        pre(node.right, level+1)
+    }
 };
