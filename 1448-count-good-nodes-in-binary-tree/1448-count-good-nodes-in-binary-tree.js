@@ -12,9 +12,10 @@
  */
 var goodNodes = function(root) {
     //dfs
-    let cnt = 1;
-    helper(root.left, root.val);
-    helper(root.right, root.val);
+    let cnt = 0;
+    // helper(root.left, root.val);
+    // helper(root.right, root.val);
+    helper(root, root.val)
     return cnt;
     
     function helper(node, maxVal){
