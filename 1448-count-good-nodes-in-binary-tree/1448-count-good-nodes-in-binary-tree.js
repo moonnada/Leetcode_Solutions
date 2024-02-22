@@ -12,7 +12,7 @@
  */
 var goodNodes = function(root) {
     /*
-    bfs
+    dfs
     
     1. check edge case(empty, one node)
     2. init a cnt val
@@ -33,7 +33,11 @@ var goodNodes = function(root) {
     
     function helper(node, maxVal){
         if(!node) return;
-        if(node.val >= maxVal) cnt++;
+        console.log('cur node val is ', node.val + ' cur maxval is ', maxVal)   
+        if(node.val >= maxVal) {
+            cnt++;
+            
+        }
         
         helper(node.left, Math.max(maxVal, node.val));
         helper(node.right, Math.max(maxVal, node.val))
