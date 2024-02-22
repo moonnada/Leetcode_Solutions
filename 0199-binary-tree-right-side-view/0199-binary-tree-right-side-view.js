@@ -11,21 +11,38 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-    if(!root) return [];
-    let queue = [[root, 0]];
-    let ans = [];
     
-    while(queue.length){
-        let [curNode, level] = queue.shift();
-        if(ans.length === level) ans.push(curNode.val);
+    //bfs
+//     if(!root) return [];
+//     let queue = [[root, 0]];
+//     let ans = [];
+    
+//     while(queue.length){
+//         let [curNode, level] = queue.shift();
+//         if(ans.length === level) ans.push(curNode.val);
         
-        if(curNode.right) queue.push([curNode.right, level+1])
-        if(curNode.left) queue.push([curNode.left, level+1]);
+//         if(curNode.right) queue.push([curNode.right, level+1])
+//         if(curNode.left) queue.push([curNode.left, level+1]);
         
 
-    }
-    return ans
+//     }
+//     return ans
        
+    //dfs
+    if(!root) return [];
+    let ans = [];
+    helper(root, 0);
+    return ans;
+    
+    function helper(node, level){
+        if(!node) return;
+        
+        ans[level] = node.val
+        
+        helper(node.left, level+1)
+        helper(node.right, level+1)
+
+    } 
         
     
 };
