@@ -11,35 +11,19 @@
  * @return {number}
  */
 var goodNodes = function(root) {
-    /*
-    dfs
-    
-    1. check edge case(empty, one node)
-    2. init a cnt val
-    3. init a helper func(node)
-    4. return cnt
-    
-    5. in a helper func, 
-        5.1) if node not exists, return;
-        5.2) check curNode.val <= root.val. if it is cnt++
-        5.3) visit left and right side recursively
-    */
-    
-    if(!root) return;
+    //dfs
     let cnt = 1;
     helper(root.left, root.val);
-    helper(root.right, root.val)
+    helper(root.right, root.val);
     return cnt;
     
     function helper(node, maxVal){
         if(!node) return;
-        console.log('cur node val is ', node.val + ' cur maxval is ', maxVal)   
-        if(node.val >= maxVal) {
-            cnt++;
-            
-        }
         
-        helper(node.left, Math.max(maxVal, node.val));
-        helper(node.right, Math.max(maxVal, node.val))
+        if(node.val >= maxVal) cnt++;
+        
+        helper(node.left, Math.max(node.val, maxVal));
+        helper(node.right, Math.max(node.val, maxVal))
     }
+    
 };
