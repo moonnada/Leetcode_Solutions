@@ -37,10 +37,10 @@ var rightSideView = function(root) {
     function helper(node, level){
         if(!node) return;
         
-        ans[level] = node.val
-        
+        if(ans.length === level) ans.push(node.val)
+                helper(node.right, level+1)
+
         helper(node.left, level+1)
-        helper(node.right, level+1)
 
     } 
         
