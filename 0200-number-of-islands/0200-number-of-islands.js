@@ -3,36 +3,32 @@
  * @return {number}
  */
 var numIslands = function(grid) {
-    /*
-    bfs
-    1. in a nested loop, find a 1 first
-    */
     let cnt = 0;
-    let row = grid.length;
-    let col = grid[0].length;
+    let rows= grid.length;
+    let cols = grid[0].length;
     
-    for(let i=0; i<row; i++){
-        for(let j=0; j<col; j++){
+    for(let i=0; i<rows; i++){
+        for(let j=0; j<cols; j++){
             if(grid[i][j] === '1'){
-                dfs(i,j,grid)
+                dfs(grid, i,j);
                 cnt++;
-
             }
         }
     }
     
-    
-    function dfs(i,j,grid){
-        if(i<0 || i>= grid.length || j<0 || j>= grid[0].length) return;
+    function dfs(grid, i,j){
+        if(i <0 || j <0 || i >= grid.length || j >= grid[0].length) return;
         
-        if(grid[i][j] === "1"){
+            if(grid[i][j] === "1"){
             grid[i][j] = "0"
         } else return;
         
-        dfs(i+1, j, grid);
-        dfs(i-1, j, grid);
-        dfs(i,j+1, grid);
-        dfs(i,j-1,grid);
+        
+        dfs(grid, i+1, j);
+        dfs(grid, i-1, j);
+        dfs(grid, i, j+1);
+        dfs(grid, i, j-1);
+        
     }
-    return cnt
+    return cnt;
 };
