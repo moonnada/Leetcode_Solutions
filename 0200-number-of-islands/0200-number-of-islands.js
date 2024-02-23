@@ -14,8 +14,9 @@ var numIslands = function(grid) {
     for(let i=0; i<row; i++){
         for(let j=0; j<col; j++){
             if(grid[i][j] === '1'){
-                cnt++;
                 dfs(i,j,grid)
+                cnt++;
+
             }
         }
     }
