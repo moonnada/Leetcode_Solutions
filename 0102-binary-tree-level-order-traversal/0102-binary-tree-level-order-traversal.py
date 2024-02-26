@@ -6,25 +6,50 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+#         BFS
+#         if not root: return []
+#         queue = [root]
+#         ans = []
+        
+#         while queue:
+#             curLevel = []
+            
+#             for i in range(len(queue)):
+#                 curNode = queue.pop(0)
+                
+#                 if curNode.left:
+#                     queue.append(curNode.left)
+                
+#                 if curNode.right:
+#                     queue.append(curNode.right)
+                    
+#                 curLevel.append(curNode.val)
+                
+#             ans.append(curLevel)
+            
+#         return ans
+        
+    
+#         DFS
         if not root: return []
-        queue = [root]
+        
         ans = []
         
-        while queue:
-            curLevel = []
+        def helper(node, level):
+            if not node: return
+
+            if len(ans) == level:
+                ans.append([])
+                
+            ans[level].append(node.val)
             
-            for i in range(len(queue)):
-                curNode = queue.pop(0)
+            if node.left:
+                helper(node.left, level+1)
                 
-                if curNode.left:
-                    queue.append(curNode.left)
-                
-                if curNode.right:
-                    queue.append(curNode.right)
-                    
-                curLevel.append(curNode.val)
-                
-            ans.append(curLevel)
-            
-        return ans
+            if node.right:
+                helper(node.right, level+1)
         
+        helper(root, 0)
+
+        return ans
+    
