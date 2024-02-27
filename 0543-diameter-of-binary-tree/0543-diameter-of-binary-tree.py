@@ -7,32 +7,57 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         '''
-        U:
-            q) if input tree has no child, then return 0?
-            
-        M: DFS
+        dfs
         
-        P:
-            1. check edge case(empty)
-            2. init a diameter as 0
-            3. run a helper func
-            4. in a helper func,
-                4.1) check if root is null. if it is, return 0
-                4.2) visit both sides recursively 
-                4.3) update the diameter val
-                4.4) return max val between left and right + 1
-           
+        1. check edge case
+        2. init a diameter val 
+        3. init a helper func (node, level)
+        4. in a helper func,   
+            4.1) if not node, return 0
+            4.2) if node.left exists, visit there level + 1
+            4.3) right, level +1
         '''
-        def dfs(root):
-            if not root: return 0
-            left = dfs(root.left)
-            right = dfs(root.right)
-            self.diameter = max( self.diameter, left + right)
-            return max(left, right) + 1
-        
         if not root: return 0
-        self.diameter = 0
-        dfs(root)
-        return self.diameter
-
         
+        maxDia = 0
+        queue = [[root, 0]]
+        
+        def getHeight(node):
+            if not node: return 0
+
+            return 1 + max(getHeight(node.left), getHeight(node.right))
+        
+        while queue:
+            curNode, curHeight = queue.pop(0)
+            
+            if not curNode: continue
+                
+            leftHeight = 0 if not curNode.left else getHeight(curNode.left)
+            rightHeight = 0 if not curNode.right else getHeight(curNode.right)
+            maxDia = max(leftHeight + rightHeight, maxDia)
+            
+            queue.append([curNode.left, leftHeight])
+            queue.append([curNode.right, rightHeight])
+            
+        
+        return maxDia
+    
+        
+        
+#         if not root: return 0
+#         diameter = 0
+        
+#         def helper(node, level):
+#             if not node: return 
+            
+#             if node.left:
+#                 helper(node.left, level+1)
+                
+#             if node.right:
+#                 helper(node.right, level+1)
+                
+#             return max(helper(node.left, level+1), helper(node.right, level+1))
+        
+#         return helper(root, diameter)
+
+    
