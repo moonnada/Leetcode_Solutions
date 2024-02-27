@@ -20,28 +20,29 @@ class Solution:
         if not root: return 0
         
         maxDia = 0
-        queue = [[root, 0]]
+        queue = [root]
         
         def getHeight(node):
             if not node: return 0
-
+            
             return 1 + max(getHeight(node.left), getHeight(node.right))
         
         while queue:
-            curNode, curHeight = queue.pop(0)
+            curNode = queue.pop(0)
             
-            if not curNode: continue
+            leftHeight = getHeight(curNode.left)
+            rightHeight = getHeight(curNode.right)
+
+
+            if curNode.left:
+                queue.append(curNode.left)
                 
-            leftHeight = 0 if not curNode.left else getHeight(curNode.left)
-            rightHeight = 0 if not curNode.right else getHeight(curNode.right)
-            maxDia = max(leftHeight + rightHeight, maxDia)
+            if curNode.right:
+                queue.append(curNode.right)
             
-            queue.append([curNode.left, leftHeight])
-            queue.append([curNode.right, rightHeight])
-            
+            maxDia = max(leftHeight+ rightHeight, maxDia)
         
         return maxDia
-    
         
         
 #         if not root: return 0
