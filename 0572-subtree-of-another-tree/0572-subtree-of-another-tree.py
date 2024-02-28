@@ -6,30 +6,19 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        '''
-        U:
-            q) what if both trees are none?
-            
-        M: dfS
-        
-        P:
-            1. check edge cases(null..)
-            2. check cur trees are same by using a helper func
-            3. keep comparing both sides of root with subroot 
-            4. in a helper func, 
-                4.1) check both trees are none. if it is, return true
-                4.2) keep comparing both sides of node and values
-        
-        '''
-        
         if not root: return False
         
-        if self.isSameTree(root, subRoot): return True
-        
-        return self.isSubtree(root.left , subRoot) or self.isSubtree(root.right, subRoot)
+        def sameTree(root, subRoot):
+            if not root and not subRoot: 
+                return True
+            
+            if root and subRoot:
+                return root.val == subRoot.val and sameTree(root.left, subRoot.left) and sameTree(root.right, subRoot.right)
+            
+        if sameTree(root, subRoot): return True
     
-    def isSameTree(self, root, subRoot):
-        if not root and not subRoot: return True
-        if root and subRoot:
-            return root.val == subRoot.val and self.isSameTree(root.left, subRoot.left) and self.isSameTree(root.right, subRoot.right)
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    
+        
+            
         
