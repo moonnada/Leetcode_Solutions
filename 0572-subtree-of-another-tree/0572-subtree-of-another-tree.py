@@ -21,17 +21,17 @@ class Solution:
         if root and subRoot:
             queue = [root]
             while queue:
-                for i in range(len(queue)):
-                    curNode = queue.pop(0)
-                    
-                    if curNode.left:
-                        queue.append(curNode.left)
-                    if curNode.right:
-                        queue.append(curNode.right)
-                    if curNode.val == subRoot.val:
-                        if isSameTree(curNode, subRoot):
-                            return True
+                # for i in range(len(queue)):
+                curNode = queue.pop(0)
+                if curNode.left:
+                    queue.append(curNode.left)
+                if curNode.right:
+                    queue.append(curNode.right)
+                if curNode.val == subRoot.val:
+                    if isSameTree(curNode, subRoot):
+                        return True
         return False
+    
             
 #         if not root: 
 #             return False
