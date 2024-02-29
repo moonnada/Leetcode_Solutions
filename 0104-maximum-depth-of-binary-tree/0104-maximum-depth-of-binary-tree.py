@@ -10,14 +10,19 @@ class Solution:
         
         maxDep = 1
         
-        def depth(node):
-            if not node: return 0
+        left = self.maxDepth(root.left)
+        right = self.maxDepth(root.right)
+        
+        return max(left, right) + 1
+        
+#         def depth(node):
+#             if not node: return 0
             
-            getLeft = depth(node.left)
-            getRight = depth(node.right)
+#             getLeft = depth(node.left)
+#             getRight = depth(node.right)
                
                 
-            return max(getLeft, getRight) + 1
+#             return max(getLeft, getRight) + 1
         
-        return depth(root)
+#         return depth(root)
         
