@@ -6,6 +6,35 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        
+        if not root: return True
+        
+        queue = [root]
+        leftHeight, rightHeight = 0,0
+        
+        def getHeight(node):
+            if not node:
+                return 0
+            return 1 + max(getHeight(node.left), getHeight(node.right))
+        
+        while queue:
+            for i in range(len(queue)):
+                curNode = queue.pop(0)
+                leftHeight = getHeight(curNode.left)
+                rightHeight = getHeight(curNode.right)
+                
+                if abs(leftHeight - rightHeight) > 1:
+                    return False
+                
+                if curNode.left:
+                    queue.append(curNode.left)
+                    
+                if curNode.right:
+                    queue.append(curNode.right)
+                    
+        return True
+                
+                
         '''
         unbalanced ? height difference > 1
         dfs
@@ -20,11 +49,11 @@ class Solution:
             
         
         '''
-        if not root: return True
+#         if not root: return True
         
-        def getHeight(node):
-            if not node: return -1
+#         def getHeight(node):
+#             if not node: return -1
             
-            return 1 + max(getHeight(node.left) , getHeight(node.right))
+#             return 1 + max(getHeight(node.left) , getHeight(node.right))
         
-        return abs(getHeight(root.left) - getHeight(root.right)) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right)
+#         return abs(getHeight(root.left) - getHeight(root.right)) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right)
