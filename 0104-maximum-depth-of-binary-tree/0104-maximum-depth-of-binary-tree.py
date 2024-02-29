@@ -7,22 +7,31 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root: return 0
+        que = [root]
+        dep = 0
         
-        maxDep = 1
         
-        left = self.maxDepth(root.left)
-        right = self.maxDepth(root.right)
         
-        return max(left, right) + 1
-        
-#         def depth(node):
-#             if not node: return 0
-            
-#             getLeft = depth(node.left)
-#             getRight = depth(node.right)
-               
+        while que:
+            for i in range(len(que)):
+                curNode = que.pop(0)
                 
-#             return max(getLeft, getRight) + 1
+                if curNode.left:
+                    que.append(curNode.left)
+                if curNode.right:
+                    que.append(curNode.right)
+                
+            dep += 1
+            
+        return dep
+            
+            
+#         if not root: return 0
         
-#         return depth(root)
+#         maxDep = 1
+        
+#         left = self.maxDepth(root.left)
+#         right = self.maxDepth(root.right)
+        
+#         return max(left, right) + 1
         
