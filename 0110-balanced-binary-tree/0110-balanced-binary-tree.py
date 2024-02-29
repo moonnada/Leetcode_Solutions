@@ -9,13 +9,38 @@ class Solution:
         '''
         diff height > 1, false
         '''
-        
         if not root: return True
+        
+        que = [root]
+        left , right = 0,0
         
         def getHeight(node):
             if not node: return 0
-            
-            return 1 + max(getHeight(node.left), getHeight(node.right))
+            return 1 + max(getHeight(node.left) , getHeight(node.right))
         
-        return abs(getHeight(root.left) - getHeight(root.right)) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right)
+        while que:
+            for i in range(len(que)):
+                curNode = que.pop(0)
+                left = getHeight(curNode.left)
+                right = getHeight(curNode.right)
+
+                if abs(left - right) > 1: 
+                    return False
+
+                if curNode.left:
+                    que.append(curNode.left)
+
+                if curNode.right:
+                    que.append(curNode.right)
+                
+        return True
+        
+#         if not root: return True
+        
+#         def getHeight(node):
+#             if not node: return 0
+            
+#             return 1 + max(getHeight(node.left), getHeight(node.right))
+        
+#         return abs(getHeight(root.left) - getHeight(root.right)) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right)
             
