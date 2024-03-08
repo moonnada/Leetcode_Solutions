@@ -5,15 +5,6 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        '''
-        U:
-        
-            ex) 1 -> 2 -> 3 -> 4 -> 5
-            p  c,n
-            
-            p 
-        '''
-        
         if not head or not head.next: return head
         
         cur = head
