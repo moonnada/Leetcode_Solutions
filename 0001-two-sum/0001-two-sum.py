@@ -6,5 +6,4 @@ class Solution:
             if lookFor in d:
                 return [i, d[lookFor]]
             
-            d[nums[i]] = i
-        
+            d[nums[i]] = i        
