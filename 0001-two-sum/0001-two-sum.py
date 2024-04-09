@@ -1,11 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        newMap = {}
-        
+        d = {}
         for i in range(len(nums)):
             lookFor = target - nums[i]
-            if lookFor in newMap:
-                return [i, newMap[lookFor] ]
-            else:
-                newMap[nums[i]] = i
+            if lookFor in d:
+                return [i, d[lookFor]]
+            
+            d[nums[i]] = i
         
