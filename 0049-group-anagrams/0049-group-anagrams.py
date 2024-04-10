@@ -10,16 +10,13 @@ class Solution:
         4. return map.values
         '''
         
-        if len(strs) == 0: return strs
-        
         hmap = {}
         
         for word in strs:
-            sortedWord = ''.join(sorted(word))
-            if sortedWord in hmap:
-                hmap[sortedWord].append(word)
+            temp = ''.join(sorted(word))
+            if temp in hmap:
+                hmap[temp].append(word)
             else:
-                hmap[sortedWord] = [word]
+                hmap[temp] = [word]
                 
         return list(hmap.values())
-        
