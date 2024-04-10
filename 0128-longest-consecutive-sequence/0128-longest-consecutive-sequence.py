@@ -4,16 +4,15 @@ class Solution:
         longest = 0
         
         for num in hset:
+            
             if not num-1 in hset:
-                curVal = num
+                curNum = num
                 cnt = 1
                 
-                while curVal + 1 in hset:
-                    curVal += 1
+                while curNum + 1 in hset:
+                    curNum +=1
                     cnt += 1
                     
-                
                 longest = max(cnt, longest)
-        
-        
+                
         return longest
