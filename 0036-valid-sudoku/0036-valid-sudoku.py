@@ -8,11 +8,10 @@ class Solution:
             for c in range(9):
                 if board[r][c] == ".": continue
                     
-                
-                elif board[r][c] in rows[r] or board[r][c] in cols[c] or board[r][c] in grid[r//3, c//3]: return False
+                elif board[r][c] in rows[r] or board[r][c] in cols[c] or board[r][c] in grid[r//3,c//3]: return False
                 
                 rows[r].add(board[r][c])
                 cols[c].add(board[r][c])
-                grid[r//3, c//3].add(board[r][c])
+                grid[r//3,c//3].add(board[r][c])
                 
         return True
