@@ -1,27 +1,19 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        '''
-        set
-        
-        Input: nums = [100,4,200,1,3,2]
-        Output: 4
-        
-        set = [100,4,200,1,3,2]
-        longest = 0
-        '''
-       
-        hashset = set(nums)
+        hset = set(nums)
         longest = 0
         
-        for num in hashset:
-            if num-1 not in hashset:
+        for num in hset:
+            if not num-1 in hset:
                 curVal = num
-                curCnt = 1
+                cnt = 1
                 
-                while curVal + 1 in hashset:
+                while curVal + 1 in hset:
                     curVal += 1
-                    curCnt += 1
+                    cnt += 1
                     
-                longest = max(curCnt, longest)
                 
+                longest = max(cnt, longest)
+        
+        
         return longest
