@@ -10,7 +10,7 @@ class Solution:
         4. return map.values
         '''
         
-        # if len(strs) == 0 or len(str) == 1: return strs
+        if len(strs) == 0: return strs
         
         hmap = {}
         
