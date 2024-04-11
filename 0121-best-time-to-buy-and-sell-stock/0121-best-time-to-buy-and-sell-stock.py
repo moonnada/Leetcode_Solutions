@@ -1,20 +1,13 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        '''
-        Input: prices = [7,1,5,3,6,4]
-        Output: 5
-        
-        1. init a set and left ptr 
-        2. traverse the input list to find max profit
-            2.1) if cur element > cur left, remove cur element in the set. left ++
-            2.2) else add cur element into the set. calculate the max profit
-        '''
-        
-        left = maxProfit = 0
-        
-        for right in range(1, len(prices)):
-            if prices[left] >= prices[right]: left = right
-            else:
-                maxProfit = max(maxProfit, prices[right]- prices[left])
-        
+        maxProfit = 0
+        for i in range(len(prices)):
+            r = i+1
+            
+            while r < len(prices) and prices[i] < prices[r]:
+                curProfit = prices[r] - prices[i]
+                maxProfit = max(maxProfit, curProfit)
+                r += 1
+                
         return maxProfit
+        
