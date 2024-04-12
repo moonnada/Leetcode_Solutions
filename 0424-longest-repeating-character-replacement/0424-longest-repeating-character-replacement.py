@@ -1,9 +1,10 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
+        left = maxFreq = longest = 0
         d = {}
-        left = longest = maxFreq = 0
+        
         for right in range(len(s)):
-            d[s[right]] = d.get(s[right], 0)+1
+            d[s[right]] = d.get(s[right], 0 )+1
             maxFreq = max(maxFreq, d[s[right]])
             
             while right - left + 1 - maxFreq > k:
@@ -13,4 +14,3 @@ class Solution:
             longest = max(longest, right-left+1)
             
         return longest
-        
