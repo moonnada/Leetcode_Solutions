@@ -5,16 +5,11 @@ class Solution:
             match i:
                 case '(':
                     stack.append(')')
-                    
                 case '{':
                     stack.append('}')
-                    
                 case '[':
                     stack.append(']')
-                    
                 case default:
                     if not stack or stack.pop() != i: return False
                     
-                    
         return len(stack) == 0
-                
