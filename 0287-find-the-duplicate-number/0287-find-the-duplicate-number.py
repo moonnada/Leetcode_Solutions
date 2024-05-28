@@ -1,16 +1,5 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        '''
-        U:
-            key points: always have one repeated num, uses only o(1) space complexity
-            
-        M: sorting?
-        
-        P: 
-            1. sort input arr
-            2. traverse to find a duplicate num
-                2.1) if find, return the num
-        '''
         # Using Floyd's Tortoise and Hare algorithm
         # to detect the cycle in the linked list
         tortoise = nums[0]
@@ -33,3 +22,4 @@ class Solution:
 
         # Return the duplicate number
         return tortoise
+        
