@@ -6,20 +6,6 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        '''
-        U:
-            q) list can be empty?
-            q) list can have the same num multiple times?
-            
-        P:
-            1. check edge cases( empty, one node)
-            2. init slow and fast ptrs
-            3. while fast and fast.next exist
-                3.1) both ptrs keep moving
-                3.2) if both ptrs are on the same position, return true
-            4. false
-        '''
-        
         if not head or not head.next: return False
         
         slow = head
@@ -30,5 +16,5 @@ class Solution:
             fast = fast.next.next
             
             if slow == fast: return True
+            
         return False
-        
