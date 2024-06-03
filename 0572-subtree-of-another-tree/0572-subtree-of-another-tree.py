@@ -10,11 +10,11 @@ class Solution:
         
         def isSame(root, subRoot):
             if not root and not subRoot: return True
-            
-            if root and subRoot:
+            elif root and subRoot:
                 return root.val == subRoot.val and isSame(root.left, subRoot.left) and isSame(root.right, subRoot.right)
             
-        if isSame(root, subRoot): return True
+        if isSame(root,subRoot): return True
         
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+                
         
