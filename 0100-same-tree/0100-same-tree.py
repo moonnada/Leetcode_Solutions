@@ -14,7 +14,7 @@ class Solution:
                 que.append([curP.left, curQ.left])
                 que.append([curP.right, curQ.right])
             
-            elif curP is not curQ:
+            elif curP != curQ:
                 return False
         return True
 #         dfs. time:o(n), space: o(n)
