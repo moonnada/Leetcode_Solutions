@@ -7,21 +7,39 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         if not root: return 0
-        que = [[root, float(-inf)]]
-        good = 0
+        ans = 0
         
-        while que:
-            [curNode, maxVal] = que.pop(0)
+        def helper(node, maxVal):
+            nonlocal ans
             
-            if curNode.val >= maxVal:
-                maxVal = curNode.val
-                good += 1
+            if node.val >= maxVal:
+                ans += 1
                 
-            if curNode.left:
-                que.append([curNode.left, maxVal])
+            if node.left: helper(node.left, max(maxVal, node.val) )
+            if node.right: helper(node.right, max(maxVal, node.val))
             
-            if curNode.right:
-                que.append([curNode.right, maxVal])
+        helper(root, float(-inf))
+        
+        return ans
+        
+        
+#         bfs. time: o(n), space: o(n)
+#         if not root: return 0
+#         que = [[root, float(-inf)]]
+#         good = 0
+        
+#         while que:
+#             [curNode, maxVal] = que.pop(0)
+            
+#             if curNode.val >= maxVal:
+#                 maxVal = curNode.val
+#                 good += 1
                 
-        return good
+#             if curNode.left:
+#                 que.append([curNode.left, maxVal])
+            
+#             if curNode.right:
+#                 que.append([curNode.right, maxVal])
+                
+#         return good
         
