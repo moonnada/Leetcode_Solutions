@@ -12,12 +12,13 @@ class Solution:
         
         while que:
             [curNode, level] = que.pop(0)
-            if len(ans) == level:
-                ans.append(curNode.val)
-                
+           
             if curNode.right:
                 que.append([curNode.right, level+1])
             if curNode.left:
                 que.append([curNode.left, level+1])
+                
+            if len(ans) == level:
+                ans.append(curNode.val)
                 
         return ans
