@@ -7,19 +7,21 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         if not root: return 0
-        good = 0
         que = [[root, float(-inf)]]
+        good = 0
         
         while que:
             [curNode, maxVal] = que.pop(0)
-            if not curNode: continue
+            
             if curNode.val >= maxVal:
                 maxVal = curNode.val
                 good += 1
-            
+                
             if curNode.left:
                 que.append([curNode.left, maxVal])
+            
             if curNode.right:
                 que.append([curNode.right, maxVal])
                 
         return good
+        
