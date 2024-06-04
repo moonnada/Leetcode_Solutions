@@ -7,18 +7,34 @@
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         if not root: return []
-        que = [[root, 0]]
         ans = []
         
-        while que:
-            [curNode, level] = que.pop(0)
-           
-            if curNode.right:
-                que.append([curNode.right, level+1])
-            if curNode.left:
-                que.append([curNode.left, level+1])
+        def helper(node,level):
+            if not node: return
+            
+            if len(ans) == level: ans.append(node.val)
+            
+            if node.right:
+                helper(node.right, level+1)
+            if node.left:
+                helper(node.left, level+1)
                 
-            if len(ans) == level:
-                ans.append(curNode.val)
-                
+        helper(root, 0)
         return ans
+#         bfs. time: o(n), space: o(n)
+#         if not root: return []
+#         que = [[root, 0]]
+#         ans = []
+        
+#         while que:
+#             [curNode, level] = que.pop(0)
+           
+#             if curNode.right:
+#                 que.append([curNode.right, level+1])
+#             if curNode.left:
+#                 que.append([curNode.left, level+1])
+                
+#             if len(ans) == level:
+#                 ans.append(curNode.val)
+                
+#         return ans
