@@ -6,42 +6,16 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        '''
-        U:
-            check bst
-            q) input root can be empty
-            q) tree can have the same number?
-            
-        M: bfs
+        if not root: return False
         
-        P:
-            1. check edge case(null)
-            2. init a que
-            3. while queue exists
-                3.1) pop curNode from queue
-                3.2) if curNode.left exists and the val is less than root, put the val into queue
-                3.3) if curNode.right exists and the val is greater than root, put the val into queue
-                3.4) else return false
-            4. return true 
+        def helper(node, leftChild, rightChild ):
+            if not node: return True
             
-        time: o(n), space: o(n)
-                    
-        '''
+            elif node.val <= leftChild or node.val >= rightChild:
+                return False
+            
+            else: return helper(node.left, leftChild, node.val) and helper(node.right, node.val, rightChild)
+            
         
-        que = deque()
-        que.append((root, float('-inf'), float('inf') ))
+        return helper(root,float('-inf') ,float('inf') )
         
-        while que:
-            node, minVal, maxVal = que.popleft()
-            
-            if node:
-                if minVal >= node.val or node.val >= maxVal: return False
-                
-                if node.left: 
-                    que.append((node.left, minVal, node.val))
-                    
-                if node.right:
-                    que.append((node.right, node.val, maxVal))
-                    
-        return True
-            
